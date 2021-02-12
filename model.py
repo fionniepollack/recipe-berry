@@ -96,6 +96,18 @@ class RecipeIngredient(db.Model):
         return f'<RecipeIngredient id={self.id}>'
 
 
+class Ingredient(db.Model):
+    """An ingredient."""
+
+    __tablename__ = 'ingredients'
+
+    ingredient_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    ingredient_name = db.Column(db.String, unique=True)
+
+    def __repr__(self):
+        return f'<Ingredient ingredient_id={self.ingredient_id} ingredient_name={self.ingredient_name}>'
+
+
 
 def connect_to_db(flask_app, db_uri='postgresql:///ratings', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
