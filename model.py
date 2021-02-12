@@ -148,6 +148,22 @@ class Category(db.Model):
         return f'<Category category_id={self.category_id} category={self.category}>'
 
 
+class RecipeDietType(db.Model):
+    """A recipe diet type."""
+
+    __tablename__ = 'recipe_diet_types'
+
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    diet_typet_id = db.Column(db.Integer)
+
+    recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+
+    recipe = db.relationship('Recipe', backref='recipe_diet_types')
+
+    def __repr__(self):
+        return f'<RecipeDietType id={self.id}>'
+
+
 
 def connect_to_db(flask_app, db_uri='postgresql:///ratings', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
