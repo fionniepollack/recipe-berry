@@ -120,6 +120,22 @@ class MeasurementUnit(db.Model):
         return f'<MeasurementUnit measurement_id={self.measurement_id} measurement_description={self.measurement_description}>'
 
 
+class RecipeCategory(db.Model):
+    """A recipe category."""
+
+    __tablename__ = 'recipe_categories'
+
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    category_id = db.Column(db.Integer)
+
+    recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+
+    recipe = db.relationship('Recipe', backref='recipe_categories')
+
+    def __repr__(self):
+        return f'<RecipeCategory id={self.id}>'
+
+
 
 def connect_to_db(flask_app, db_uri='postgresql:///ratings', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
