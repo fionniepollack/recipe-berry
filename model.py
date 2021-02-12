@@ -59,6 +59,23 @@ class Cuisine(db.Model):
         return f'<Cuisine cusine_id={self.cusine_id} cuisine={self.cuisine}>'
 
 
+class RecipeSteps(db.Model):
+    """A recipe step."""
+
+    __tablename__ = 'recipe_steps'
+
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    step_num = db.Column(db.Integer)
+    instruction = db.Column(db.Text)
+
+    recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+
+    recipe = db.relationship('Recipe', backref='recipe_steps')
+
+    def __repr__(self):
+        return f'<RecipeSteps id={self.id} step_num={self.step_num} instruction={self.instruction}>'
+
+
 
 def connect_to_db(flask_app, db_uri='postgresql:///ratings', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
