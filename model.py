@@ -108,6 +108,18 @@ class Ingredient(db.Model):
         return f'<Ingredient ingredient_id={self.ingredient_id} ingredient_name={self.ingredient_name}>'
 
 
+class MeasurementUnit(db.Model):
+    """A measurement unit."""
+
+    __tablename__ = 'measurement_units'
+
+    measurement_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    measurement_description = db.Column(db.String)
+
+    def __repr__(self):
+        return f'<MeasurementUnit measurement_id={self.measurement_id} measurement_description={self.measurement_description}>'
+
+
 
 def connect_to_db(flask_app, db_uri='postgresql:///ratings', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
