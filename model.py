@@ -136,6 +136,18 @@ class RecipeCategory(db.Model):
         return f'<RecipeCategory id={self.id}>'
 
 
+class Category(db.Model):
+    """A category."""
+
+    __tablename__ = 'categories'
+
+    category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    category = db.Column(db.String)
+
+    def __repr__(self):
+        return f'<Category category_id={self.category_id} category={self.category}>'
+
+
 
 def connect_to_db(flask_app, db_uri='postgresql:///ratings', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
