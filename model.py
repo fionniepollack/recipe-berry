@@ -164,6 +164,18 @@ class RecipeDietType(db.Model):
         return f'<RecipeDietType id={self.id}>'
 
 
+class DietTypes(db.Model):
+    """A diet type."""
+
+    __tablename__ = 'diet_types'
+
+    diet_type_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    diet = db.Column(db.String)
+
+    def __repr__(self):
+        return f'<DietTypes diet_type_id={self.diet_type_id} diet={self.diet}>'
+
+
 
 def connect_to_db(flask_app, db_uri='postgresql:///ratings', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
