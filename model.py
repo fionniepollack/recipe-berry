@@ -22,189 +22,189 @@ class User(db.Model):
         return f'<User user_id={self.user_id} email={self.email}>'
 
 
-class Recipe(db.Model):
-    """A recipe."""
+# class Recipe(db.Model):
+#     """A recipe."""
 
-    __tablename__ = 'recipes'
+#     __tablename__ = 'recipes'
 
-    recipe_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    title = db.Column(db.String)
-    description = db.Column(db.Text)
-    prep_time = db.Column(db.Integer)
-    cook_time = db.Column(db.Integer)
-    total_time = db.Column(db.Integer)
-    serving_qty = db.Column(db.Integer)
-    recipe_notes = db.Column(db.Text)
-    source = db.Column(db.String)
+#     recipe_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     title = db.Column(db.String)
+#     description = db.Column(db.Text)
+#     prep_time = db.Column(db.Integer)
+#     cook_time = db.Column(db.Integer)
+#     total_time = db.Column(db.Integer)
+#     serving_qty = db.Column(db.Integer)
+#     recipe_notes = db.Column(db.Text)
+#     source = db.Column(db.String)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    cuisine_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
+#     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+#     cuisine_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
 
-    user = db.relationship('User', backref='recipes')
-    cuisine = db.relationship('Cuisine', backref='recipes')
+#     user = db.relationship('User', backref='recipes')
+#     cuisine = db.relationship('Cuisine', backref='recipes')
 
-    def __repr__(self):
-        return f'<Recipe recipe_id={self.recipe_id} title={self.title}>'
+#     def __repr__(self):
+#         return f'<Recipe recipe_id={self.recipe_id} title={self.title}>'
 
 
-class Cuisine(db.Model):
-    """A cuisine."""
+# class Cuisine(db.Model):
+#     """A cuisine."""
 
-    __tablename__ = 'cuisines'
+#     __tablename__ = 'cuisines'
 
-    cusine_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    cuisine = db.Column(db.String, unique=True)
+#     cusine_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     cuisine = db.Column(db.String, unique=True)
 
-    def __repr__(self):
-        return f'<Cuisine cusine_id={self.cusine_id} cuisine={self.cuisine}>'
+#     def __repr__(self):
+#         return f'<Cuisine cusine_id={self.cusine_id} cuisine={self.cuisine}>'
 
 
-class RecipeSteps(db.Model):
-    """A recipe step."""
+# class RecipeSteps(db.Model):
+#     """A recipe step."""
 
-    __tablename__ = 'recipe_steps'
+#     __tablename__ = 'recipe_steps'
 
-    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    step_num = db.Column(db.Integer)
-    instruction = db.Column(db.Text)
+#     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     step_num = db.Column(db.Integer)
+#     instruction = db.Column(db.Text)
 
-    recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+#     recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
 
-    recipe = db.relationship('Recipe', backref='recipe_steps')
+#     recipe = db.relationship('Recipe', backref='recipe_steps')
 
-    def __repr__(self):
-        return f'<RecipeSteps id={self.id} step_num={self.step_num} instruction={self.instruction}>'
+#     def __repr__(self):
+#         return f'<RecipeSteps id={self.id} step_num={self.step_num} instruction={self.instruction}>'
 
 
-class RecipeIngredient(db.Model):
-    """A recipe ingredient."""
+# class RecipeIngredient(db.Model):
+#     """A recipe ingredient."""
 
-    __tablename__ = 'recipe_ingredients'
+#     __tablename__ = 'recipe_ingredients'
 
-    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    measurement_qty = db.Column(db.Integer)
+#     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     measurement_qty = db.Column(db.Integer)
 
-    recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
-    ingredient_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
-    measurement_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
+#     recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+#     ingredient_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
+#     measurement_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
 
-    recipe = db.relationship('Recipe', backref='recipe_ingredients')
-    ingredient_name = db.relationship('Ingredient', backref='recipe_ingredients')
-    measurement_description = db.relationship('MeasurementUnit', backref='recipe_ingredients')
+#     recipe = db.relationship('Recipe', backref='recipe_ingredients')
+#     ingredient_name = db.relationship('Ingredient', backref='recipe_ingredients')
+#     measurement_description = db.relationship('MeasurementUnit', backref='recipe_ingredients')
 
-    def __repr__(self):
-        return f'<RecipeIngredient id={self.id}>'
+#     def __repr__(self):
+#         return f'<RecipeIngredient id={self.id}>'
 
 
-class Ingredient(db.Model):
-    """An ingredient."""
+# class Ingredient(db.Model):
+#     """An ingredient."""
 
-    __tablename__ = 'ingredients'
+#     __tablename__ = 'ingredients'
 
-    ingredient_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    ingredient_name = db.Column(db.String, unique=True)
+#     ingredient_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     ingredient_name = db.Column(db.String, unique=True)
 
-    def __repr__(self):
-        return f'<Ingredient ingredient_id={self.ingredient_id} ingredient_name={self.ingredient_name}>'
+#     def __repr__(self):
+#         return f'<Ingredient ingredient_id={self.ingredient_id} ingredient_name={self.ingredient_name}>'
 
 
-class MeasurementUnit(db.Model):
-    """A measurement unit."""
+# class MeasurementUnit(db.Model):
+#     """A measurement unit."""
 
-    __tablename__ = 'measurement_units'
+#     __tablename__ = 'measurement_units'
 
-    measurement_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    measurement_description = db.Column(db.String)
+#     measurement_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     measurement_description = db.Column(db.String)
 
-    def __repr__(self):
-        return f'<MeasurementUnit measurement_id={self.measurement_id} measurement_description={self.measurement_description}>'
+#     def __repr__(self):
+#         return f'<MeasurementUnit measurement_id={self.measurement_id} measurement_description={self.measurement_description}>'
 
 
-class RecipeCategory(db.Model):
-    """A recipe category."""
+# class RecipeCategory(db.Model):
+#     """A recipe category."""
 
-    __tablename__ = 'recipe_categories'
+#     __tablename__ = 'recipe_categories'
 
-    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    category_id = db.Column(db.Integer)
+#     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     category_id = db.Column(db.Integer)
 
-    recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+#     recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
 
-    recipe = db.relationship('Recipe', backref='recipe_categories')
+#     recipe = db.relationship('Recipe', backref='recipe_categories')
 
-    def __repr__(self):
-        return f'<RecipeCategory id={self.id}>'
+#     def __repr__(self):
+#         return f'<RecipeCategory id={self.id}>'
 
 
-class Category(db.Model):
-    """A category."""
+# class Category(db.Model):
+#     """A category."""
 
-    __tablename__ = 'categories'
+#     __tablename__ = 'categories'
 
-    category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    category = db.Column(db.String)
+#     category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     category = db.Column(db.String)
 
-    def __repr__(self):
-        return f'<Category category_id={self.category_id} category={self.category}>'
+#     def __repr__(self):
+#         return f'<Category category_id={self.category_id} category={self.category}>'
 
 
-class RecipeDietType(db.Model):
-    """A recipe diet type."""
+# class RecipeDietType(db.Model):
+#     """A recipe diet type."""
 
-    __tablename__ = 'recipe_diet_types'
+#     __tablename__ = 'recipe_diet_types'
 
-    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    diet_typet_id = db.Column(db.Integer)
+#     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     diet_typet_id = db.Column(db.Integer)
 
-    recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+#     recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
 
-    recipe = db.relationship('Recipe', backref='recipe_diet_types')
+#     recipe = db.relationship('Recipe', backref='recipe_diet_types')
 
-    def __repr__(self):
-        return f'<RecipeDietType id={self.id}>'
+#     def __repr__(self):
+#         return f'<RecipeDietType id={self.id}>'
 
 
-class DietTypes(db.Model):
-    """A diet type."""
+# class DietTypes(db.Model):
+#     """A diet type."""
 
-    __tablename__ = 'diet_types'
+#     __tablename__ = 'diet_types'
 
-    diet_type_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    diet = db.Column(db.String)
+#     diet_type_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     diet = db.Column(db.String)
 
-    def __repr__(self):
-        return f'<DietTypes diet_type_id={self.diet_type_id} diet={self.diet}>'
+#     def __repr__(self):
+#         return f'<DietTypes diet_type_id={self.diet_type_id} diet={self.diet}>'
 
 
-class RecipeImage(db.Model):
-    """A recipe image."""
+# class RecipeImage(db.Model):
+#     """A recipe image."""
 
-    __tablename__ = 'recipe_images'
+#     __tablename__ = 'recipe_images'
 
-    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    image_id = db.Column(db.Integer)
+#     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     image_id = db.Column(db.Integer)
 
-    recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+#     recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
 
-    recipe = db.relationship('Recipe', backref='recipe_images')
+#     recipe = db.relationship('Recipe', backref='recipe_images')
 
-    def __repr__(self):
-        return f'<RecipeImage id={self.id}>'
+#     def __repr__(self):
+#         return f'<RecipeImage id={self.id}>'
 
 
-class Image(db.Model):
-    """A image."""
+# class Image(db.Model):
+#     """A image."""
 
-    __tablename__ = 'images'
+#     __tablename__ = 'images'
 
-    image_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    image = db.Column(db.String)
+#     image_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     image = db.Column(db.String)
 
-    def __repr__(self):
-        return f'<Image image_id={self.image_id} image={self.image}>'
+#     def __repr__(self):
+#         return f'<Image image_id={self.image_id} image={self.image}>'
 
 
-def connect_to_db(flask_app, db_uri='postgresql:///ratings', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///recipeberry', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     flask_app.config['SQLALCHEMY_ECHO'] = echo
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
