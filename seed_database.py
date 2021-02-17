@@ -8,12 +8,24 @@ from datetime import datetime
 import crud
 import model
 import server
+import requests
 
 os.system('dropdb recipeberry')
 os.system('createdb recipeberry')
 
 model.connect_to_db(server.app)
 model.db.create_all()
+
+
+
+def get_test_recipes():
+
+    response = requests.get("https://www.themealdb.com/api/json/v1/1/search.php?s=chicken")
+    test_meals = response.json().get(“meals”)[:5]
+    import pdb; pdb.set_trace()
+
+
+get_test_recipes()
 
 
 # Create 5 test users

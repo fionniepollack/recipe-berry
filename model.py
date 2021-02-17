@@ -22,29 +22,29 @@ class User(db.Model):
         return f'<User user_id={self.user_id} email={self.email}>'
 
 
-# class Recipe(db.Model):
-#     """A recipe."""
+class Recipe(db.Model):
+    """A recipe."""
 
-#     __tablename__ = 'recipes'
+    __tablename__ = 'recipes'
 
-#     recipe_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     title = db.Column(db.String)
-#     description = db.Column(db.Text)
-#     prep_time = db.Column(db.Integer)
-#     cook_time = db.Column(db.Integer)
-#     total_time = db.Column(db.Integer)
-#     serving_qty = db.Column(db.Integer)
-#     recipe_notes = db.Column(db.Text)
-#     source = db.Column(db.String)
+    recipe_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    title = db.Column(db.String)
+    description = db.Column(db.Text)
+    prep_time = db.Column(db.Integer)
+    cook_time = db.Column(db.Integer)
+    total_time = db.Column(db.Integer)
+    serving_qty = db.Column(db.Integer)
+    recipe_notes = db.Column(db.Text)
+    source = db.Column(db.String)
 
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-#     cuisine_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    # cuisine_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
 
-#     user = db.relationship('User', backref='recipes')
-#     cuisine = db.relationship('Cuisine', backref='recipes')
+    user = db.relationship('User', backref='recipes')
+    # cuisine = db.relationship('Cuisine', backref='recipes')
 
-#     def __repr__(self):
-#         return f'<Recipe recipe_id={self.recipe_id} title={self.title}>'
+    def __repr__(self):
+        return f'<Recipe recipe_id={self.recipe_id} title={self.title}>'
 
 
 # class Cuisine(db.Model):
