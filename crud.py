@@ -3,7 +3,6 @@
 from model import db, User, connect_to_db
 
 
-# Functions start here!
 def create_user(email, password, fname, lname, join_date):
     """Create and return a new user."""
 
@@ -27,7 +26,7 @@ def create_recipe(title, **kwargs):
                     serving_qty = kwargs.get("serving_qty"),
                     recipe_notes = kwargs.get("recipe_notes"),
                     source = kwargs.get("source")
-    )
+                   )
 
     db.session.add(recipe)
     db.session.commit()
