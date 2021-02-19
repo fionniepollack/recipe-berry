@@ -14,8 +14,8 @@ class User(db.Model):
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
-    fname = db.Column(db.String)
-    lname = db.Column(db.String)
+    first_name = db.Column(db.String)
+    last_name = db.Column(db.String)
     join_date = db.Column(db.DateTime)
 
     def __repr__(self):
