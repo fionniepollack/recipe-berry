@@ -19,7 +19,7 @@ def create_user(email, password, first_name, last_name, join_date):
 
 
 def create_recipe(title, **kwargs):
-    """Create and return new recipe."""
+    """Create and return a new recipe."""
 
     recipe = Recipe(title=title,
                     description = kwargs.get("description"),
