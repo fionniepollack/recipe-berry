@@ -34,7 +34,6 @@ class Recipe(db.Model):
     cook_time = db.Column(db.Integer)
     total_time = db.Column(db.Integer)
     serving_qty = db.Column(db.Integer)
-    recipe_notes = db.Column(db.Text)
     source = db.Column(db.String)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
@@ -202,6 +201,10 @@ class Recipe(db.Model):
 
 #     def __repr__(self):
 #         return f'<Image image_id={self.image_id} image={self.image}>'
+
+
+
+#-----------------------------------------------------------------------------#
 
 
 def connect_to_db(flask_app, db_uri='postgresql:///recipeberry', echo=True):

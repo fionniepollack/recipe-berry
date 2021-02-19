@@ -1,12 +1,16 @@
 """CRUD operations."""
 
-from model import db, User, connect_to_db
+from model import db, User, Recipe, connect_to_db
 
 
 def create_user(email, password, first_name, last_name, join_date):
     """Create and return a new user."""
 
-    user = User(email=email, password=password, first_name=first_name, last_name=last_name, join_date=join_date)
+    user = User(email = email,
+                password = password,
+                first_name = first_name,
+                last_name = last_name,
+                join_date = join_date)
 
     db.session.add(user)
     db.session.commit()
@@ -17,21 +21,22 @@ def create_user(email, password, first_name, last_name, join_date):
 def create_recipe(title, **kwargs):
     """Create and return new recipe."""
 
-    recipe = Recipe(
-                    title=title,
+    recipe = Recipe(title=title,
                     description = kwargs.get("description"),
                     prep_time = kwargs.get("prep_time"),
                     cook_time = kwargs.get("cook_time"),
                     total_time = kwargs.get("total_time"),
                     serving_qty = kwargs.get("serving_qty"),
-                    recipe_notes = kwargs.get("recipe_notes"),
-                    source = kwargs.get("source")
-                   )
+                    source = kwargs.get("source"),
+                    user_id = kwargs.get("user_id"))
 
     db.session.add(recipe)
     db.session.commit()
 
     return recipe
+
+
+#-----------------------------------------------------------------------------#
 
 
 if __name__ == '__main__':
