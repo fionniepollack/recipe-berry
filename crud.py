@@ -36,6 +36,14 @@ def create_recipe(title, **kwargs):
     return recipe
 
 
+def get_recipes():
+    """Return all recipes."""
+
+    recipes = Recipe.query.all()
+
+    return recipes
+
+
 #-----------------------------------------------------------------------------#
 
 

@@ -19,6 +19,15 @@ def homepage():
     return render_template("homepage.html")
 
 
+@app.route("/recipes")
+def all_recipes():
+    """View all recipes."""
+
+    recipes = crud.get_recipes()
+
+    return render_template('all_recipes.html', recipes=recipes)
+
+
 #-----------------------------------------------------------------------------#
 
 
