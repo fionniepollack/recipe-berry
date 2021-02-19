@@ -44,6 +44,14 @@ def get_recipes():
     return recipes
 
 
+def get_recipe_by_id(recipe_id):
+    """Return a particular recipe."""
+
+    recipe = Recipe.query.get(recipe_id)
+
+    return recipe
+
+
 #-----------------------------------------------------------------------------#
 
 

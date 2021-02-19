@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ recipe.title }} - Details{% endblock %}
+
+{% block body %}
+<h1>{{ recipe.title }}</h1>
+
+<p>
+  Description: {{ recipe.description }}<br>
+  Prep Time: {{ recipe.prep_time }} minutes<br>
+  Cook Time: {{ recipe.cook_time }} minutes<br>
+  Total Time: {{ recipe.total_time }} minutes<br>
+  Serving Quantity: {{ recipe.serving_qty }}<br>
+  Source: {{ recipe.source }}
+</p>
+
+{% endblock %}

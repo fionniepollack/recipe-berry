@@ -28,6 +28,15 @@ def all_recipes():
     return render_template('all_recipes.html', recipes=recipes)
 
 
+@app.route("/recipes/<recipe_id>")
+def show_recipe(recipe_id):
+    """Show details for a particular recipe."""
+
+    recipe = crud.get_recipe_by_id(recipe_id)
+
+    return render_template("recipe_details.html", recipe=recipe)
+
+
 #-----------------------------------------------------------------------------#
 
 
