@@ -81,12 +81,12 @@ def create_test_recipes(test_users):
     # Capture test recipes from get_test_recipes() function
     test_recipes = get_test_recipes()
 
-    for recipe in test_recipes:
+    for test_recipe in test_recipes:
         user = choice(test_users)
         prep_time = randint(5,20)
         cook_time = randint(10,30)
 
-        kwargs = {"title" : recipe["strMeal"],
+        kwargs = {"title" : test_recipe["strMeal"],
                   "description" : "Sample recipe from TheMealDB API",
                   "prep_time" : prep_time,
                   "cook_time" : cook_time,
@@ -94,10 +94,13 @@ def create_test_recipes(test_users):
                   "serving_qty" : randint(1,5),
                   "source" : "Sample recipe from TheMealDB API",
                   "user_id" : user.user_id,
-                  "cuisine_id" : crud.get_cuisine_id_by_cuisine_name(recipe["strArea"])}
+                  "cuisine_id" : crud.get_cuisine_id_by_cuisine_name(test_recipe["strArea"])}
 
         recipe = crud.create_recipe(**kwargs)
         test_recipes_in_db.append(recipe)
+
+        # Create recipe step
+        recipe_step = crud.create_recipe_step(1, test_recipe["strInstructions"], recipe.recipe_id)
 
     return test_recipes_in_db
 

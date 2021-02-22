@@ -14,4 +14,12 @@
   Source: {{ recipe.source }}
 </p>
 
+<ul>
+  {% for recipe_step in recipe.recipe_steps %}
+    <li>
+        {{ recipe_step.step_num }}: {{ recipe_step.instruction }} 
+    </li>
+  {% endfor %}
+</ul>
+
 {% endblock %}

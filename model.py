@@ -58,21 +58,21 @@ class Cuisine(db.Model):
         return f'<Cuisine cuisine_id={self.cuisine_id} cuisine_name={self.cuisine_name}>'
 
 
-# class RecipeSteps(db.Model):
-#     """A recipe step."""
+class RecipeStep(db.Model):
+    """A recipe step."""
 
-#     __tablename__ = 'recipe_steps'
+    __tablename__ = 'recipe_steps'
 
-#     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     step_num = db.Column(db.Integer)
-#     instruction = db.Column(db.Text)
+    step_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    step_num = db.Column(db.Integer, nullable=False)
+    instruction = db.Column(db.Text, nullable=False)
 
-#     recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
 
-#     recipe = db.relationship('Recipe', backref='recipe_steps')
+    recipe = db.relationship('Recipe', backref='recipe_steps')
 
-#     def __repr__(self):
-#         return f'<RecipeSteps id={self.id} step_num={self.step_num} instruction={self.instruction}>'
+    def __repr__(self):
+        return f'<RecipeStep step_id={self.step_id} step_num={self.step_num} instruction={self.instruction}>'
 
 
 # class RecipeIngredient(db.Model):
@@ -83,7 +83,7 @@ class Cuisine(db.Model):
 #     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 #     measurement_qty = db.Column(db.Integer)
 
-#     recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+#     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
 #     ingredient_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
 #     measurement_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
 
@@ -127,7 +127,7 @@ class Cuisine(db.Model):
 #     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 #     category_id = db.Column(db.Integer)
 
-#     recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+#     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
 
 #     recipe = db.relationship('Recipe', backref='recipe_categories')
 
@@ -155,7 +155,7 @@ class Cuisine(db.Model):
 #     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 #     diet_typet_id = db.Column(db.Integer)
 
-#     recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+#     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
 
 #     recipe = db.relationship('Recipe', backref='recipe_diet_types')
 
@@ -183,7 +183,7 @@ class Cuisine(db.Model):
 #     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 #     image_id = db.Column(db.Integer)
 
-#     recipe_id = db.Column(db.Integer, db.ForeignKey('Recipe.recipe_id'))
+#     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
 
 #     recipe = db.relationship('Recipe', backref='recipe_images')
 
