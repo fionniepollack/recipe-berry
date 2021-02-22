@@ -76,6 +76,8 @@ def get_test_recipes():
 def create_test_recipes(test_users):
     """Create test recipes."""
 
+    test_recipes_in_db = []
+
     # Capture test recipes from get_test_recipes() function
     test_recipes = get_test_recipes()
 
@@ -91,10 +93,43 @@ def create_test_recipes(test_users):
                   "total_time" : prep_time + cook_time,
                   "serving_qty" : randint(1,5),
                   "source" : "Sample recipe from TheMealDB API",
-                  "user_id" : user.user_id}
+                  "user_id" : user.user_id,
+                  "cuisine_id" : crud.get_cuisine_id_by_cuisine_name(recipe["strArea"])}
 
         recipe = crud.create_recipe(**kwargs)
+        test_recipes_in_db.append(recipe)
 
+    return test_recipes_in_db
+
+
+def get_test_cuisines():
+    """Fetch cuisines for testing purposes from TheMealDB API."""
+
+    test_cuisines = []
+
+    response = requests.get("https://www.themealdb.com/api/json/v1/1/list.php?a=list")
+    cuisines_in_api = response.json().get("meals")
+
+    for cuisine in cuisines_in_api:
+        cuisine = cuisine["strArea"]
+        test_cuisines.append(cuisine)
+
+    return test_cuisines
+
+
+def create_test_cuisines():
+    """Create test cuisines."""
+
+    test_cuisines_in_db = []
+
+    # Capture test cuisines from get_test_cuisines() function
+    test_cuisines = get_test_cuisines()
+
+    for test_cuisine in test_cuisines:
+        cuisine = crud.create_cuisine(test_cuisine)
+        test_cuisines_in_db.append(cuisine)
+
+    return test_cuisines_in_db
 
 
 #-----------------------------------------------------------------------------#
@@ -104,5 +139,11 @@ if __name__ == '__main__':
     model.connect_to_db(server.app)
     model.db.create_all()
 
+    # Create test users in database
     test_users = create_test_users()
+
+    # Create test cuisines in database
+    test_cuisines_in_db = create_test_cuisines()
+
+    # Create test recipes in database
     create_test_recipes(test_users)

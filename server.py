@@ -37,6 +37,15 @@ def show_recipe(recipe_id):
     return render_template("recipe_details.html", recipe=recipe)
 
 
+@app.route("/cuisines")
+def all_cuisines():
+    """View all cuisines."""
+
+    cuisines = crud.get_cuisines()
+
+    return render_template('all_cuisines.html', cuisines=cuisines)
+
+
 #-----------------------------------------------------------------------------#
 
 

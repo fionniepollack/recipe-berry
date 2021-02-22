@@ -1,6 +1,6 @@
 """CRUD operations."""
 
-from model import db, User, Recipe, connect_to_db
+from model import db, User, Recipe, Cuisine, connect_to_db
 
 
 def create_user(email, password, first_name, last_name, join_date):
@@ -50,6 +50,33 @@ def get_recipe_by_id(recipe_id):
     recipe = Recipe.query.get(recipe_id)
 
     return recipe
+
+
+def create_cuisine(cuisine_name):
+    """Create and return a new cuisine."""
+
+    cuisine = Cuisine(cuisine_name=cuisine_name)
+
+    db.session.add(cuisine)
+    db.session.commit()
+
+    return cuisine
+
+
+def get_cuisines():
+    """Return all cuisines."""
+
+    cuisines = Cuisine.query.all()
+
+    return cuisines
+
+
+def get_cuisine_id_by_cuisine_name(cuisine_name):
+    """Given a cuisine_name, return a particular cuisine_id."""
+
+    cuisine_id = Cuisine.query.filter(Cuisine.cuisine_name == cuisine_name)
+
+    return cuisine_id
 
 
 #-----------------------------------------------------------------------------#

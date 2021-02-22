@@ -46,16 +46,16 @@ class Recipe(db.Model):
         return f'<Recipe recipe_id={self.recipe_id} title={self.title}>'
 
 
-# class Cuisine(db.Model):
-#     """A cuisine."""
+class Cuisine(db.Model):
+    """A cuisine."""
 
-#     __tablename__ = 'cuisines'
+    __tablename__ = 'cuisines'
 
-#     cusine_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     cuisine = db.Column(db.String, unique=True)
+    cuisine_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    cuisine_name = db.Column(db.String, unique=True)
 
-#     def __repr__(self):
-#         return f'<Cuisine cusine_id={self.cusine_id} cuisine={self.cuisine}>'
+    def __repr__(self):
+        return f'<Cuisine cuisine_id={self.cuisine_id} cuisine_name={self.cuisine_name}>'
 
 
 # class RecipeSteps(db.Model):
