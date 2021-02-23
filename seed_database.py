@@ -142,16 +142,33 @@ def create_test_cuisines():
 def create_test_measurements(test_recipe, recipe_id):
     """Create test recipe ingredient measurements."""
 
-    n = 1
+    numMeasure = 1
 
     while True:
-        measurement = test_recipe.get(f"strMeasure{n}")
-        if measurement != "" or measurement != None:
-            recipe_ingredient_measurement = crud.create_recipe_ingredient(recipe_id, measurement)
-            n += 1
-        
-        else:
+        measurement = test_recipe.get(f"strMeasure{numMeasure}")
+
+        if measurement == " " or measurement == "" or measurement == None:
             break
+
+        else:
+            recipe_ingredient_measurement = crud.create_recipe_ingredient(recipe_id, measurement)
+
+        numMeasure = numMeasure + 1
+
+
+# def create_test_ingredients(test_recipe, recipe_id):
+#     """Create test recipe ingredients."""
+
+#     n = 1
+
+#     while True:
+#         ingredient = test_recipe.get(f"strMeasure{n}")
+#         if ingredient != "" or ingredient != None:
+#             recipe_ingredient = crud.create_recipe_ingredient(recipe_id, measurement)
+#             n += 1
+        
+#         else:
+#             break
 
 
 #-----------------------------------------------------------------------------#
