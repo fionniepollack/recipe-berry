@@ -99,8 +99,12 @@ def create_test_recipes(test_users):
         recipe = crud.create_recipe(**kwargs)
         test_recipes_in_db.append(recipe)
 
-        # Create recipe step
-        recipe_step = crud.create_recipe_step(1, test_recipe["strInstructions"], recipe.recipe_id)
+        # Seed database with recipe step(s)
+        crud.create_recipe_step(recipe.recipe_id, 1, test_recipe["strInstructions"])
+
+        # Seed database with recipe ingredient measurements 
+        # Using create_test_measurements() function
+        create_test_measurements(test_recipe, recipe.recipe_id)
 
     return test_recipes_in_db
 
@@ -133,6 +137,21 @@ def create_test_cuisines():
         test_cuisines_in_db.append(cuisine)
 
     return test_cuisines_in_db
+
+
+def create_test_measurements(test_recipe, recipe_id):
+    """Create test recipe ingredient measurements."""
+
+    n = 1
+
+    while True:
+        measurement = test_recipe.get(f"strMeasure{n}")
+        if measurement != "" or measurement != None:
+            recipe_ingredient_measurement = crud.create_recipe_ingredient(recipe_id, measurement)
+            n += 1
+        
+        else:
+            break
 
 
 #-----------------------------------------------------------------------------#

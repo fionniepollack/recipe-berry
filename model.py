@@ -75,24 +75,25 @@ class RecipeStep(db.Model):
         return f'<RecipeStep step_id={self.step_id} step_num={self.step_num} instruction={self.instruction}>'
 
 
-# class RecipeIngredient(db.Model):
-#     """A recipe ingredient."""
+class RecipeIngredient(db.Model):
+    """A recipe ingredient."""
 
-#     __tablename__ = 'recipe_ingredients'
+    __tablename__ = 'recipe_ingredients'
 
-#     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     measurement_qty = db.Column(db.Integer)
+    recipe_ingredient_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    measurement = db.Column(db.String, nullable=True)
+    # measurement_qty = db.Column(db.Integer)
 
-#     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
-#     ingredient_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
-#     measurement_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
+    # ingredient_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
+    # measurement_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
 
-#     recipe = db.relationship('Recipe', backref='recipe_ingredients')
-#     ingredient_name = db.relationship('Ingredient', backref='recipe_ingredients')
-#     measurement_description = db.relationship('MeasurementUnit', backref='recipe_ingredients')
+    recipe = db.relationship('Recipe', backref='recipe_ingredients')
+    # ingredient_name = db.relationship('Ingredient', backref='recipe_ingredients')
+    # measurement_description = db.relationship('MeasurementUnit', backref='recipe_ingredients')
 
-#     def __repr__(self):
-#         return f'<RecipeIngredient id={self.id}>'
+    def __repr__(self):
+        return f'<RecipeIngredient id={self.id}>'
 
 
 # class Ingredient(db.Model):
