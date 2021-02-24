@@ -28,7 +28,8 @@ def create_recipe(title, **kwargs):
                     total_time = kwargs.get("total_time"),
                     serving_qty = kwargs.get("serving_qty"),
                     source = kwargs.get("source"),
-                    user_id = kwargs.get("user_id"))
+                    user_id = kwargs.get("user_id"),
+                    cuisine_id = kwargs.get("cuisine_id"))
 
     db.session.add(recipe)
     db.session.commit()
@@ -74,7 +75,10 @@ def get_cuisines():
 def get_cuisine_id_by_cuisine_name(cuisine_name):
     """Given a cuisine_name, return a particular cuisine_id."""
 
-    cuisine_id = Cuisine.query.filter(Cuisine.cuisine_name == cuisine_name)
+    # Get cuisine object that matches the given cuisine_name 
+    cuisine_match = Cuisine.query.filter(Cuisine.cuisine_name == cuisine_name).first()
+
+    cuisine_id = cuisine_match.cuisine_id
 
     return cuisine_id
 
