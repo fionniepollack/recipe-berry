@@ -109,6 +109,9 @@ def create_test_recipes(test_users):
         # Seed database with recipe category
         crud.create_recipe_category(recipe.recipe_id, test_recipe["strCategory"])
 
+        # Seed database with an image
+        create_test_image(test_recipe)
+
     return test_recipes_in_db
 
 
@@ -230,12 +233,17 @@ def create_test_categories():
     return test_categories_in_db
 
 
-# def create_test_recipe_categories():
-#     """Create test recipe categories."""
+def create_test_image(test_recipe):
+    """Create test image."""
 
-#     recipe = 
-#     crud.create_recipe_category(recipe_id, category_id)
+    test_image_in_db = []
 
+    image_in_api = test_recipe["strMealThumb"]
+
+    image = crud.create_image(image_in_api)
+    test_image_in_db.append(image)
+
+    return test_image_in_db
 
 
 #-----------------------------------------------------------------------------#

@@ -149,6 +149,16 @@ def create_recipe_category(recipe_id, category_name):
     return recipe_category
 
 
+def create_image(image_url):
+    """Create and return a new image."""
+
+    image = Image(image_url = image_url)
+
+    db.session.add(image)
+    db.session.commit()
+
+    return image
+
 
 #-----------------------------------------------------------------------------#
 

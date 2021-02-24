@@ -179,17 +179,16 @@ class Category(db.Model):
 #         return f'<RecipeImage id={self.id}>'
 
 
-# class Image(db.Model):
-#     """A image."""
+class Image(db.Model):
+    """An image."""
 
-#     __tablename__ = 'images'
+    __tablename__ = 'images'
 
-#     image_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     image = db.Column(db.String)
+    image_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    image_url = db.Column(db.String)
 
-#     def __repr__(self):
-#         return f'<Image image_id={self.image_id} image={self.image}>'
-
+    def __repr__(self):
+        return f'<Image image_id={self.image_id} image={self.image}>'
 
 
 #-----------------------------------------------------------------------------#
