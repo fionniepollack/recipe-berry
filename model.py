@@ -163,20 +163,21 @@ class Category(db.Model):
 #         return f'<DietTypes diet_type_id={self.diet_type_id} diet={self.diet}>'
 
 
-# class RecipeImage(db.Model):
-#     """A recipe image."""
+class RecipeImage(db.Model):
+    """A recipe image."""
 
-#     __tablename__ = 'recipe_images'
+    __tablename__ = 'recipe_images'
 
-#     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     image_id = db.Column(db.Integer)
+    recipe_image_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 
-#     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
+    image_id = db.Column(db.Integer, db.ForeignKey('images.image_id'))
 
-#     recipe = db.relationship('Recipe', backref='recipe_images')
+    recipe = db.relationship('Recipe', backref='recipe_images')
+    image_name = db.relationship('Image', backref='recipe_images')
 
-#     def __repr__(self):
-#         return f'<RecipeImage id={self.id}>'
+    def __repr__(self):
+        return f'<RecipeImage id={self.id}>'
 
 
 class Image(db.Model):

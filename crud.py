@@ -160,6 +160,18 @@ def create_image(image_url):
     return image
 
 
+def create_recipe_image(recipe_id, image_id):
+    """Given a recipe_id and image_url, create and return a new recipe image."""
+
+    recipe_image = RecipeImage(recipe_id = recipe_id,
+                               image_id = image_id)
+
+    db.session.add(recipe_image)
+    db.session.commit()
+
+    return recipe_image
+
+
 #-----------------------------------------------------------------------------#
 
 
