@@ -106,6 +106,9 @@ def create_test_recipes(test_users):
         # Using create_test_recipe_ingredients() function
         create_test_recipe_ingredients(test_recipe, recipe.recipe_id)
 
+        # Seed database with recipe category
+        crud.create_recipe_category(recipe.recipe_id, test_recipe["strCategory"])
+
     return test_recipes_in_db
 
 
@@ -227,6 +230,14 @@ def create_test_categories():
     return test_categories_in_db
 
 
+# def create_test_recipe_categories():
+#     """Create test recipe categories."""
+
+#     recipe = 
+#     crud.create_recipe_category(recipe_id, category_id)
+
+
+
 #-----------------------------------------------------------------------------#
 
 
@@ -243,7 +254,8 @@ if __name__ == '__main__':
     # Create test ingredients in database
     test_ingredients_in_db = create_test_ingredients()
 
+    # Create test categories in database
+    create_test_categories()
+
     # Create test recipes in database
     create_test_recipes(test_users)
-
-    create_test_categories()

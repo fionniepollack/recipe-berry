@@ -1,6 +1,7 @@
 """CRUD operations."""
 
-from model import db, User, Recipe, Cuisine, RecipeStep, RecipeIngredient, Ingredient, Category, connect_to_db
+from model import *
+# from model import db, User, Recipe, Cuisine, RecipeStep, RecipeIngredient, Ingredient, Category, RecipeCategory, connect_to_db
 
 
 def create_user(email, password, first_name, last_name, join_date):
@@ -129,6 +130,24 @@ def create_category(category_name):
     db.session.commit()
 
     return category
+
+
+def create_recipe_category(recipe_id, category_name):
+    """Given a recipe_id and category_name, create and return a new recipe category."""
+
+    # Get category object that matches the given category_name 
+    category_match = Category.query.filter(Category.category_name == category_name).first()
+
+    category_id = category_match.category_id
+
+    recipe_category = RecipeCategory(recipe_id = recipe_id,
+                                     category_id = category_id)
+
+    db.session.add(recipe_category)
+    db.session.commit()
+
+    return recipe_category
+
 
 
 #-----------------------------------------------------------------------------#

@@ -106,20 +106,21 @@ class Ingredient(db.Model):
         return f'<Ingredient ingredient_id={self.ingredient_id} ingredient_name={self.ingredient_name}>'
 
 
-# class RecipeCategory(db.Model):
-#     """A recipe category."""
+class RecipeCategory(db.Model):
+    """A recipe category."""
 
-#     __tablename__ = 'recipe_categories'
+    __tablename__ = 'recipe_categories'
 
-#     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     category_id = db.Column(db.Integer)
+    recipe_category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 
-#     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'))
 
-#     recipe = db.relationship('Recipe', backref='recipe_categories')
+    recipe = db.relationship('Recipe', backref='recipe_categories')
+    category_name = db.relationship('Category', backref='recipe_categories')
 
-#     def __repr__(self):
-#         return f'<RecipeCategory id={self.id}>'
+    def __repr__(self):
+        return f'<RecipeCategory recipe_category_id={self.recipe_category_id}>'
 
 
 class Category(db.Model):
