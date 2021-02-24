@@ -85,7 +85,7 @@ class RecipeIngredient(db.Model):
     # measurement_qty = db.Column(db.Integer)
 
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
-    # ingredient_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
+    # ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredients.ingredient_id'))
     # measurement_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
 
     recipe = db.relationship('Recipe', backref='recipe_ingredients')
@@ -96,17 +96,17 @@ class RecipeIngredient(db.Model):
         return f'<RecipeIngredient id={self.id}>'
 
 
-# class Ingredient(db.Model):
-#     """An ingredient."""
+class Ingredient(db.Model):
+    """An ingredient."""
 
-#     __tablename__ = 'ingredients'
+    __tablename__ = 'ingredients'
 
-#     ingredient_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     ingredient_name = db.Column(db.String, unique=True)
+    ingredient_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 
-#     def __repr__(self):
-#         return f'<Ingredient ingredient_id={self.ingredient_id} ingredient_name={self.ingredient_name}>'
+    ingredient_name = db.Column(db.String, unique=True)
 
+    def __repr__(self):
+        return f'<Ingredient ingredient_id={self.ingredient_id} ingredient_name={self.ingredient_name}>'
 
 # class MeasurementUnit(db.Model):
 #     """A measurement unit."""

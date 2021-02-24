@@ -98,13 +98,18 @@ def create_test_recipes(test_users):
 
         recipe = crud.create_recipe(**kwargs)
         test_recipes_in_db.append(recipe)
-
+        
         # Seed database with recipe step(s)
         crud.create_recipe_step(recipe.recipe_id, 1, test_recipe["strInstructions"])
 
-        # Seed database with recipe ingredient measurements 
-        # Using create_test_measurements() function
-        create_test_measurements(test_recipe, recipe.recipe_id)
+        # Seed database with ingredients
+        # ingredients = create_test_ingredients(test_recipe)
+        # for ingredient in ingredients:
+        
+        # Seed database with recipe ingredients, measurements
+        # Using create_test_recipe_ingredients() function
+        # create_test_measurements(test_recipe, recipe.recipe_id)
+        create_test_recipe_ingredients(test_recipe, recipe.recipe_id)
 
     return test_recipes_in_db
 
@@ -139,36 +144,81 @@ def create_test_cuisines():
     return test_cuisines_in_db
 
 
-def create_test_measurements(test_recipe, recipe_id):
-    """Create test recipe ingredient measurements."""
+def create_test_recipe_ingredients(test_recipe, recipe_id):
+    """Create test recipe ingredients."""
 
-    numMeasure = 1
+    # Capture test ingredients from create_test_ingredients() function
+    # test_ingredients = create_test_ingredients(test_recipe)
+
+    num = 1
 
     while True:
-        measurement = test_recipe.get(f"strMeasure{numMeasure}")
+        measurement = test_recipe.get(f"strMeasure{num}")
+        # ingredient = test_recipe.get(f"strIngredient{num}")
 
         if measurement == " " or measurement == "" or measurement == None:
             break
 
         else:
-            recipe_ingredient_measurement = crud.create_recipe_ingredient(recipe_id, measurement)
+            # test_ingredient = crud.create_ingredient(ingredient)
+            recipe_ingredient = crud.create_recipe_ingredient(recipe_id, measurement)
 
-        numMeasure = numMeasure + 1
+        num = num + 1
 
 
-# def create_test_ingredients(test_recipe, recipe_id):
-#     """Create test recipe ingredients."""
+# def create_test_ingredients(test_recipe):
+#     """Create test ingredients."""
 
-#     n = 1
+#     test_ingredients_in_db = []
+
+#     num = 1
 
 #     while True:
-#         ingredient = test_recipe.get(f"strMeasure{n}")
-#         if ingredient != "" or ingredient != None:
-#             recipe_ingredient = crud.create_recipe_ingredient(recipe_id, measurement)
-#             n += 1
-        
-#         else:
+#         ingredient = test_recipe.get(f"strIngredient{num}")
+
+#         if ingredient == " " or ingredient == "" or ingredient == None:
 #             break
+
+#         else:
+#             test_ingredient = crud.create_ingredient(ingredient)
+#             test_ingredients_in_db.append(test_ingredient)
+
+#         num = num + 1
+    
+#     return test_ingredients_in_db
+
+
+def get_test_ingredients():
+    """Fetch ingredients for testing purposes from TheMealDB API."""
+
+    test_ingredients = []
+
+    response = requests.get("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
+    ingredients_in_api = response.json().get("meals")
+
+
+    for ingredient in ingredients_in_api:
+        ingredient = ingredient["strIngredient"]
+        test_ingredients.append(ingredient)
+
+    test_ingredients_set = set(test_ingredients)
+
+    return test_ingredients_set
+
+
+def create_test_ingredients():
+    """Create test ingredients."""
+
+    test_ingredients_in_db = []
+
+    # Capture test ingredients from get_test_ingredients() function
+    test_ingredients = get_test_ingredients()
+
+    for test_ingredient in test_ingredients:
+        ingredient = crud.create_ingredient(test_ingredient)
+        test_ingredients_in_db.append(ingredient)
+
+    return test_ingredients_in_db
 
 
 #-----------------------------------------------------------------------------#
@@ -186,3 +236,6 @@ if __name__ == '__main__':
 
     # Create test recipes in database
     create_test_recipes(test_users)
+
+    # Create test ingredients in database
+    test_ingredients_in_db = create_test_ingredients()

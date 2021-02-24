@@ -1,6 +1,6 @@
 """CRUD operations."""
 
-from model import db, User, Recipe, Cuisine, RecipeStep, RecipeIngredient, connect_to_db
+from model import db, User, Recipe, Cuisine, RecipeStep, RecipeIngredient, Ingredient, connect_to_db
 
 
 def create_user(email, password, first_name, last_name, join_date):
@@ -55,7 +55,7 @@ def get_recipe_by_id(recipe_id):
 def create_cuisine(cuisine_name):
     """Create and return a new cuisine."""
 
-    cuisine = Cuisine(cuisine_name=cuisine_name)
+    cuisine = Cuisine(cuisine_name = cuisine_name)
 
     db.session.add(cuisine)
     db.session.commit()
@@ -102,6 +102,18 @@ def create_recipe_ingredient(recipe_id, measurement):
     db.session.commit()
 
     return recipe_ingredient
+
+
+def create_ingredient(ingredient_name):
+    """Create and return a new ingredient."""
+
+    ingredient = Ingredient(ingredient_name = ingredient_name)
+
+    db.session.add(ingredient)
+    db.session.commit()
+
+    return ingredient
+
 
 
 #-----------------------------------------------------------------------------#
