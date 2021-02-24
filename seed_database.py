@@ -197,6 +197,36 @@ def create_test_ingredients():
     return test_ingredients_in_db
 
 
+def get_test_categories():
+    """Fetch categories for testing purposes from TheMealDB API."""
+
+    test_categories = []
+
+    response = requests.get("https://www.themealdb.com/api/json/v1/1/categories.php")
+    categories_in_api = response.json().get("categories")
+
+    for category in categories_in_api:
+        category = category["strCategory"]
+        test_categories.append(category)
+
+    return test_categories
+
+
+def create_test_categories():
+    """Create test categories."""
+
+    test_categories_in_db = []
+
+    # Capture test categories from get_test_categories() function
+    test_categories = get_test_categories()
+
+    for test_category in test_categories:
+        category = crud.create_category(test_category)
+        test_categories_in_db.append(category)
+
+    return test_categories_in_db
+
+
 #-----------------------------------------------------------------------------#
 
 
@@ -215,3 +245,5 @@ if __name__ == '__main__':
 
     # Create test recipes in database
     create_test_recipes(test_users)
+
+    create_test_categories()

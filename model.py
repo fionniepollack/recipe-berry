@@ -122,16 +122,16 @@ class Ingredient(db.Model):
 #         return f'<RecipeCategory id={self.id}>'
 
 
-# class Category(db.Model):
-#     """A category."""
+class Category(db.Model):
+    """A category."""
 
-#     __tablename__ = 'categories'
+    __tablename__ = 'categories'
 
-#     category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     category = db.Column(db.String)
+    category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    category_name = db.Column(db.String)
 
-#     def __repr__(self):
-#         return f'<Category category_id={self.category_id} category={self.category}>'
+    def __repr__(self):
+        return f'<Category category_id={self.category_id} category_name={self.category_name}>'
 
 
 # class RecipeDietType(db.Model):

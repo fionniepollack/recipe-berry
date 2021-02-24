@@ -1,6 +1,6 @@
 """CRUD operations."""
 
-from model import db, User, Recipe, Cuisine, RecipeStep, RecipeIngredient, Ingredient, connect_to_db
+from model import db, User, Recipe, Cuisine, RecipeStep, RecipeIngredient, Ingredient, Category, connect_to_db
 
 
 def create_user(email, password, first_name, last_name, join_date):
@@ -119,6 +119,16 @@ def create_ingredient(ingredient_name):
 
     return ingredient
 
+
+def create_category(category_name):
+    """Create and return a new category."""
+
+    category = Category(category_name = category_name)
+
+    db.session.add(category)
+    db.session.commit()
+
+    return category
 
 
 #-----------------------------------------------------------------------------#
