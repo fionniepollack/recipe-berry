@@ -92,10 +92,11 @@ def create_recipe_step(recipe_id, step_num, instruction):
     return recipe_step
 
 
-def create_recipe_ingredient(recipe_id, measurement):
+def create_recipe_ingredient(recipe_id, ingredient_id, measurement):
     """Create and return a new recipe ingredient."""
 
     recipe_ingredient = RecipeIngredient(recipe_id = recipe_id,
+                                         ingredient_id = ingredient_id,
                                          measurement = measurement)
 
     db.session.add(recipe_ingredient)

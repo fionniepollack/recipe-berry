@@ -85,11 +85,11 @@ class RecipeIngredient(db.Model):
     # measurement_qty = db.Column(db.Integer)
 
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
-    # ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredients.ingredient_id'))
+    ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredients.ingredient_id'))
     # measurement_id = db.Column(db.Integer, db.ForeignKey('cuisines.cusine_id'))
 
     recipe = db.relationship('Recipe', backref='recipe_ingredients')
-    # ingredient_name = db.relationship('Ingredient', backref='recipe_ingredients')
+    ingredient_name = db.relationship('Ingredient', backref='recipe_ingredients')
     # measurement_description = db.relationship('MeasurementUnit', backref='recipe_ingredients')
 
     def __repr__(self):
@@ -107,6 +107,7 @@ class Ingredient(db.Model):
 
     def __repr__(self):
         return f'<Ingredient ingredient_id={self.ingredient_id} ingredient_name={self.ingredient_name}>'
+
 
 # class MeasurementUnit(db.Model):
 #     """A measurement unit."""
