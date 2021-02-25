@@ -162,7 +162,7 @@ def create_test_recipe_ingredients(test_recipe, recipe_id):
 
         else:
             # Check if ingredient found in JSON matches an ingredient in the database
-            # Use .title() to make all ingredients capitalized
+            # Use .title() to make the first letter of all ingredients capitalized
             ingredient_in_db = model.Ingredient.query.filter(model.Ingredient.ingredient_name == ingredient.title()).first()
             recipe_ingredient = crud.create_recipe_ingredient(recipe_id, ingredient_in_db.ingredient_id, measurement)
 
@@ -199,7 +199,7 @@ def create_test_ingredients():
 
     for test_ingredient in test_ingredients:
 
-        # Use .title() to make all ingredients capitalized
+        # Use .title() to make the first letter of all ingredients capitalized
         ingredient = crud.create_ingredient(test_ingredient.title())
         test_ingredients_in_db.append(ingredient)
 
