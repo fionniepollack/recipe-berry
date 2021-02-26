@@ -1,7 +1,17 @@
 """CRUD operations."""
 
-from model import *
-# from model import db, User, Recipe, Cuisine, RecipeStep, RecipeIngredient, Ingredient, Category, RecipeCategory, connect_to_db
+from model import (db,
+                   User,
+                   Recipe,
+                   Cuisine,
+                   RecipeStep,
+                   RecipeIngredient,
+                   Ingredient,
+                   RecipeCategory,
+                   Category,
+                   RecipeImage,
+                   Image,
+                   connect_to_db)
 
 
 def create_user(email, password, first_name, last_name, join_date):
@@ -171,6 +181,11 @@ def create_recipe_image(recipe_id, image_id):
 
     return recipe_image
 
+
+def get_user_by_email(email):
+    """Return a user by email."""
+
+    return User.query.filter(User.email == email).first()
 
 #-----------------------------------------------------------------------------#
 

@@ -2,7 +2,7 @@
 
 from flask import (Flask, render_template, request, flash, session,
                    redirect)
-from model import connect_to_db
+from model import connect_to_db, User
 import crud
 
 from jinja2 import StrictUndefined
@@ -44,6 +44,36 @@ def all_cuisines():
     cuisines = crud.get_cuisines()
 
     return render_template('all_cuisines.html', cuisines=cuisines)
+
+
+@app.route("/authenticate", methods=["POST"])
+def authenticate():
+    """Handle login and check user credentials."""
+
+    # Handle login
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    user = crud.get_user_by_email(email)
+
+    # Check to make sure the user is in DB
+    if user:
+
+        # Check if password matches passowrd in db for user
+        if password == user.password:
+            session["user_id"] = user.user_id
+            flash("Logged in!")
+
+        # If user password does not match, flash error message
+        else:
+            flash("Invalid password.")
+
+    # If user does not exist, flash error message
+    else:
+        flash("User does not exist.")
+
+    return redirect('/')
+
 
 
 #-----------------------------------------------------------------------------#
