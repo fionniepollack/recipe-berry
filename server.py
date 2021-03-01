@@ -1,11 +1,11 @@
 """Server for recipe berry app."""
 
-from flask import (Flask, render_template, request, flash, session,
-                   redirect)
+from flask import Flask, render_template, request, flash, session, redirect
+from jinja2 import StrictUndefined
+from datetime import datetime
+
 from model import connect_to_db, User
 import crud
-
-from jinja2 import StrictUndefined
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -44,6 +44,28 @@ def all_cuisines():
     cuisines = crud.get_cuisines()
 
     return render_template('all_cuisines.html', cuisines=cuisines)
+
+
+@app.route("/users", methods=["POST"])
+def register_user():
+    """Create a new user."""
+
+    email = request.form.get("email")
+    password = request.form.get("password")
+    first_name = request.form.get("password")
+    last_name = request.form.get("password")
+    join_date = datetime.now()
+
+    user = crud.get_user_by_email(email)
+
+    if user:
+        flash('A user already exists with that email. Try again.')
+
+    else:
+        crud.create_user(email, password, first_name, last_name, join_date)
+        flash('User was created sucessfully. Please log in.')
+
+    return redirect('/')
 
 
 @app.route("/authenticate", methods=["POST"])

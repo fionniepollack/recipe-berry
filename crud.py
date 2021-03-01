@@ -29,6 +29,12 @@ def create_user(email, password, first_name, last_name, join_date):
     return user
 
 
+def get_user_by_email(email):
+    """Return a user by email."""
+
+    return User.query.filter(User.email == email).first()
+
+
 def create_recipe(title, **kwargs):
     """Create and return a new recipe."""
 
@@ -181,11 +187,6 @@ def create_recipe_image(recipe_id, image_id):
 
     return recipe_image
 
-
-def get_user_by_email(email):
-    """Return a user by email."""
-
-    return User.query.filter(User.email == email).first()
 
 #-----------------------------------------------------------------------------#
 
