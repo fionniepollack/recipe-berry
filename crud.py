@@ -35,6 +35,14 @@ def get_user_by_email(email):
     return User.query.filter(User.email == email).first()
 
 
+def get_user_by_id(user_id):
+    """Return a particular user."""
+
+    user = User.query.get(user_id)
+
+    return user
+
+
 def create_recipe(title, **kwargs):
     """Create and return a new recipe."""
 

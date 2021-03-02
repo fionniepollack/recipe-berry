@@ -46,6 +46,18 @@ def all_cuisines():
     return render_template('all_cuisines.html', cuisines=cuisines)
 
 
+@app.route("/profile")
+def show_user():
+    """Show details for a particular user."""
+
+    user_id = session.get("user_id")
+    print(f"**********************{user_id}***********************")
+
+    user = crud.get_user_by_id(user_id)
+
+    return render_template("user_details.html", user=user)
+
+
 @app.route("/users", methods=["POST"])
 def register_user():
     """Create a new user."""
