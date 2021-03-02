@@ -55,6 +55,15 @@ def all_cuisines():
     return render_template('all_cuisines.html', cuisines=cuisines)
 
 
+@app.route("/cuisines/<cuisine_id>")
+def show_cuisine(cuisine_id):
+    """Show recipes for a particular cuisine."""
+
+    cuisine = crud.get_cuisine_by_id(cuisine_id)
+
+    return render_template("cuisine_recipes.html", cuisine=cuisine)
+
+
 #-----------------------------------------------------------------------------#
 #- USER ROUTES ---------------------------------------------------------------#
 #-----------------------------------------------------------------------------#

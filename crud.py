@@ -97,6 +97,14 @@ def get_cuisines():
     return cuisines
 
 
+def get_cuisine_by_id(cuisine_id):
+    """Return a particular cuisine given a cuisine_id."""
+
+    cuisine = Cuisine.query.get(cuisine_id)
+
+    return cuisine
+
+
 def get_cuisine_id_by_cuisine_name(cuisine_name):
     """Given a cuisine_name, return a particular cuisine_id."""
 
