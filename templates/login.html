@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
-{% block title %}Recipe Berry Home{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block body %}
-  <h1>Log In</h1>
+  <h1>Login</h1>
 
-  <form action="/login" method="POST">
-    <label for="username">Username</label>
-    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required minlength=5>
-    <br>
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+  <form action="/authenticate" method="POST">
+    <p>
+      Email <input type="text" name="email" placeholder="email@recipeberry.com" required>
+    </p>
+
+    <p>
+      Password <input type="password" name="password" placeholder="Password" required>
+    </p>
+
     <p>
       <input type="submit">
     </p>

@@ -109,6 +109,13 @@ def register_user():
     return redirect('/')
 
 
+@app.route("/authenticate", methods=["GET"])
+def show_login():
+    """Show user login page."""
+
+    return render_template("login.html")
+
+
 @app.route("/authenticate", methods=["POST"])
 def authenticate():
     """Handle login and check user credentials."""
@@ -126,6 +133,7 @@ def authenticate():
         if password == user.password:
             session["user_id"] = user.user_id
             flash("Logged in!")
+            return redirect('/')
 
         # If user password does not match, flash error message
         else:
@@ -135,7 +143,7 @@ def authenticate():
     else:
         flash("User does not exist.")
 
-    return redirect('/')
+    return redirect('/authenticate')
 
 
 
