@@ -12,11 +12,20 @@ app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
 
+#-----------------------------------------------------------------------------#
+#- HOMEPAGE ------------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
+
 @app.route("/")
 def homepage():
     """Show homepage."""
 
     return render_template("homepage.html")
+
+
+#-----------------------------------------------------------------------------#
+#- RECIPE ROUTES -------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 
 @app.route("/recipes")
@@ -46,19 +55,30 @@ def all_cuisines():
     return render_template('all_cuisines.html', cuisines=cuisines)
 
 
+#-----------------------------------------------------------------------------#
+#- USER ROUTES ---------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
+
+
 @app.route("/profile")
 def show_user():
     """Show details for a particular user."""
 
     user_id = session.get("user_id")
-    print(f"**********************{user_id}***********************")
 
     user = crud.get_user_by_id(user_id)
 
     return render_template("user_details.html", user=user)
 
 
-@app.route("/users", methods=["POST"])
+@app.route("/registration", methods=["GET"])
+def show_registration():
+    """Show user registration page."""
+
+    return render_template("registration.html")
+
+
+@app.route("/registration", methods=["POST"])
 def register_user():
     """Create a new user."""
 
