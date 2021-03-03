@@ -42,6 +42,9 @@ class Recipe(db.Model):
     user = db.relationship('User', backref='recipes')
     cuisine = db.relationship('Cuisine', backref='recipes')
 
+    # Defining the relationship between the category class and the recipe table
+    categories = db.relationship("Category", secondary="recipe_categories")
+
     def __repr__(self):
         return f'<Recipe recipe_id={self.recipe_id} title={self.title}>'
 
@@ -107,7 +110,7 @@ class Ingredient(db.Model):
 
 
 class RecipeCategory(db.Model):
-    """A recipe category."""
+    """Associative table for the relationships of recipe and category."""
 
     __tablename__ = 'recipe_categories'
 
@@ -117,7 +120,7 @@ class RecipeCategory(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'))
 
     recipe = db.relationship('Recipe', backref='recipe_categories')
-    category_name = db.relationship('Category', backref='recipe_categories')
+    category = db.relationship('Category', backref='recipe_categories')
 
     def __repr__(self):
         return f'<RecipeCategory recipe_category_id={self.recipe_category_id}>'
@@ -130,6 +133,9 @@ class Category(db.Model):
 
     category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     category_name = db.Column(db.String)
+
+    # Defining the relationship between the category class and the recipe table
+    recipes = db.relationship("Recipe", secondary="recipe_categories")
 
     def __repr__(self):
         return f'<Category category_id={self.category_id} category_name={self.category_name}>'
