@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}All Categories{% endblock %}
+
+{% block body %}
+  <h1>All Categories</h1>
+
+  <ul>
+    {% for category in categories %}
+      <li>
+        <a href="/categories/{{ category.category_id }}">
+          {{ category.category_name }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

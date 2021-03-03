@@ -161,6 +161,14 @@ def create_ingredient(ingredient_name):
     return ingredient
 
 
+def get_categories():
+    """Return all categories."""
+
+    categories = Category.query.all()
+
+    return categories
+
+
 def create_category(category_name):
     """Create and return a new category."""
 

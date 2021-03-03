@@ -64,6 +64,15 @@ def show_cuisine(cuisine_id):
     return render_template("cuisine_recipes.html", cuisine=cuisine)
 
 
+@app.route("/categories")
+def all_categories():
+    """View all categories."""
+
+    categories = crud.get_categories()
+
+    return render_template('all_categories.html', categories=categories)
+
+
 @app.route("/create_recipe", methods=["GET", "POST"])
 def create_recipe():
     """Show create recipe page."""
