@@ -73,6 +73,15 @@ def all_categories():
     return render_template('all_categories.html', categories=categories)
 
 
+@app.route("/categories/<category_id>")
+def show_category(category_id):
+    """Show recipes for a particular category."""
+
+    category = crud.get_category_by_id(category_id)
+
+    return render_template("category_recipes.html", category=category)
+
+
 @app.route("/create_recipe", methods=["GET", "POST"])
 def create_recipe():
     """Show create recipe page."""

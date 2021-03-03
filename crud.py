@@ -161,6 +161,17 @@ def create_ingredient(ingredient_name):
     return ingredient
 
 
+def create_category(category_name):
+    """Create and return a new category."""
+
+    category = Category(category_name = category_name)
+
+    db.session.add(category)
+    db.session.commit()
+
+    return category
+
+
 def get_categories():
     """Return all categories."""
 
@@ -169,13 +180,10 @@ def get_categories():
     return categories
 
 
-def create_category(category_name):
-    """Create and return a new category."""
+def get_category_by_id(category_id):
+    """Return a particular category given a category_id."""
 
-    category = Category(category_name = category_name)
-
-    db.session.add(category)
-    db.session.commit()
+    category = Category.query.get(category_id)
 
     return category
 
