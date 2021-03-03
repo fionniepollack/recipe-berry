@@ -64,6 +64,17 @@ def show_cuisine(cuisine_id):
     return render_template("cuisine_recipes.html", cuisine=cuisine)
 
 
+@app.route("/create_recipe")
+def create_recipe():
+    """Show create recipe page."""
+
+    if session.get("user_id") == None:
+        flash("Please log in to create a new recipe.")
+        redirect('/')
+
+    return render_template("create_recipe.html")
+
+
 #-----------------------------------------------------------------------------#
 #- USER ROUTES ---------------------------------------------------------------#
 #-----------------------------------------------------------------------------#
