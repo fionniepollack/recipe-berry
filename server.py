@@ -70,7 +70,7 @@ def create_recipe():
 
     if session.get("user_id") == None:
         flash("Please log in to create a new recipe.")
-        redirect('/')
+        return redirect('/')
 
     return render_template("create_recipe.html")
 
@@ -155,6 +155,22 @@ def authenticate():
         flash("User does not exist.")
 
     return redirect('/authenticate')
+
+
+@app.route("/logout", methods=["GET"])
+def logout():
+    """Handle user logout."""
+
+    user_id = session.get("user_id")
+
+    if user_id == None:
+        flash("There is no user logged in to logout.")
+    
+    else:
+        session["user_id"] = None
+        flash("User has been successfully logged out.")
+
+    return redirect('/')
 
 
 #-----------------------------------------------------------------------------#
