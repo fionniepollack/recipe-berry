@@ -8,7 +8,7 @@
       <br>
       Find inspiration for your next meal with your new recipe friend, Recipe Berry.
   </h3>
-
+  <br>
 
   <h3>Navigation</h3>
   <ul>
@@ -19,5 +19,16 @@
     <li><a href="/registration">Create a new account</a></li>
     <li><a href="/authenticate">Login</a></li>
   </ul>
-  
+  <br>
+
+  <h3>Search - Recipe Titles</h3>
+  <form action="/search" method="GET">
+    <p>
+      Search <input type="text" name="search_string" placeholder="Search for recipes">
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+  </form>
 {% endblock %}

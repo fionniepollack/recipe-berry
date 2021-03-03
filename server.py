@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, flash, session, redirect
 from jinja2 import StrictUndefined
 from datetime import datetime
 
-from model import connect_to_db, User
+from model import connect_to_db, User, Recipe
 import crud
 
 app = Flask(__name__)
@@ -145,6 +145,25 @@ def authenticate():
 
     return redirect('/authenticate')
 
+
+#-----------------------------------------------------------------------------#
+#- SEARCH ROUTES -------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
+
+@app.route("/search", methods=["GET"])
+def search():
+    """Search."""
+
+    # Get search_string input from search form
+    raw_search_string = request.args["search_string"]
+
+    # Surround raw_search_string with % as a wildcard
+    search_string = f"%{raw_search_string}%"
+
+    # Case insensitive search on recipe titles
+    results = Recipe.query.filter(Recipe.title.ilike(search_string)).all()
+
+    return render_template('all_recipes.html', recipes=results)
 
 
 #-----------------------------------------------------------------------------#
