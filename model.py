@@ -6,6 +6,10 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
+#-----------------------------------------------------------------------------#
+#- USER ----------------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
+
 class User(db.Model):
     """A user."""
 
@@ -21,6 +25,10 @@ class User(db.Model):
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email}>'
 
+
+#-----------------------------------------------------------------------------#
+#- RECIPE --------------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 class Recipe(db.Model):
     """A recipe."""
@@ -42,12 +50,19 @@ class Recipe(db.Model):
     user = db.relationship('User', backref='recipes')
     cuisine = db.relationship('Cuisine', backref='recipes')
 
-    # Defining the relationship between the category class and the recipe table
+    # Define relationship between Recipe class and Category class
     categories = db.relationship("Category", secondary="recipe_categories")
+
+    # Define relationship between Recipe class and Ingredient class
+    ingredients = db.relationship("Ingredient", secondary="recipe_ingredients")
 
     def __repr__(self):
         return f'<Recipe recipe_id={self.recipe_id} title={self.title}>'
 
+
+#-----------------------------------------------------------------------------#
+#- CUISINE -------------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 class Cuisine(db.Model):
     """A cuisine."""
@@ -60,6 +75,10 @@ class Cuisine(db.Model):
     def __repr__(self):
         return f'<Cuisine cuisine_id={self.cuisine_id} cuisine_name={self.cuisine_name}>'
 
+
+#-----------------------------------------------------------------------------#
+#- RECIPE STEP ---------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 class RecipeStep(db.Model):
     """A recipe step."""
@@ -77,6 +96,10 @@ class RecipeStep(db.Model):
     def __repr__(self):
         return f'<RecipeStep step_id={self.step_id} step_num={self.step_num} instruction={self.instruction}>'
 
+
+#-----------------------------------------------------------------------------#
+#- RECIPE INGREDIENT ---------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 class RecipeIngredient(db.Model):
     """A recipe ingredient."""
@@ -105,9 +128,16 @@ class Ingredient(db.Model):
 
     ingredient_name = db.Column(db.String, unique=True)
 
+    # Define relationship between Recipe class and Ingredient class
+    recipes = db.relationship("Recipe", secondary="recipe_ingredients")
+
     def __repr__(self):
         return f'<Ingredient ingredient_id={self.ingredient_id} ingredient_name={self.ingredient_name}>'
 
+
+#-----------------------------------------------------------------------------#
+#- RECIPE CATEGORY -----------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 class RecipeCategory(db.Model):
     """Associative table for the relationships of recipe and category."""
@@ -134,12 +164,16 @@ class Category(db.Model):
     category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     category_name = db.Column(db.String)
 
-    # Defining the relationship between the category class and the recipe table
+    # Define relationship between Recipe class and Category class
     recipes = db.relationship("Recipe", secondary="recipe_categories")
 
     def __repr__(self):
         return f'<Category category_id={self.category_id} category_name={self.category_name}>'
 
+
+#-----------------------------------------------------------------------------#
+#- RECIPE DIET TYPE ----------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 # class RecipeDietType(db.Model):
 #     """A recipe diet type."""
@@ -168,6 +202,10 @@ class Category(db.Model):
 #     def __repr__(self):
 #         return f'<DietTypes diet_type_id={self.diet_type_id} diet={self.diet}>'
 
+
+#-----------------------------------------------------------------------------#
+#- RECIPE IMAGE --------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 class RecipeImage(db.Model):
     """A recipe image."""
