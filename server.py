@@ -64,16 +64,41 @@ def show_cuisine(cuisine_id):
     return render_template("cuisine_recipes.html", cuisine=cuisine)
 
 
-@app.route("/create_recipe")
+@app.route("/create_recipe", methods=["GET", "POST"])
 def create_recipe():
     """Show create recipe page."""
 
-    if session.get("user_id") == None:
-        flash("Please log in to create a new recipe.")
-        return redirect('/')
+    if request.method == "GET":
 
-    return render_template("create_recipe.html")
+        if session.get("user_id") == None:
+            flash("Please log in to create a new recipe.")
+            return redirect('/')
 
+        return render_template("create_recipe.html")
+
+    elif request.method == "POST":
+
+        cuisine_name = request.form.get("cuisine")
+
+        kwargs = {"title" : request.form.get("title"),
+                  "description" : request.form.get("description"),
+                  "prep_time" : request.form.get("prep_time"),
+                  "cook_time" : request.form.get("cook_time"),
+                  "total_time" : request.form.get("total_time"),
+                  "serving_qty" : request.form.get("serving_qty"),
+                  "source" : request.form.get("source"),
+                  "user_id" : session.get("user_id"),
+                  "cuisine_id" : crud.get_cuisine_id_by_cuisine_name(cuisine_name)}
+
+        recipe = crud.create_recipe(**kwargs)
+
+        if recipe:
+            flash('Congrats! A new recipe was created.')
+
+        else:
+            flash('Error.')
+
+        return redirect('/create_recipe')
 
 #-----------------------------------------------------------------------------#
 #- USER ROUTES ---------------------------------------------------------------#
@@ -90,7 +115,7 @@ def all_users():
 
 @app.route("/profile")
 def show_user():
-    """Show details for a particular user."""
+    """Show details for the logged in user."""
 
     user_id = session.get("user_id")
 
