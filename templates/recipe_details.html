@@ -3,26 +3,36 @@
 {% block title %}{{ recipe.title }} - Details{% endblock %}
 
 {% block body %}
-<h1>{{ recipe.title }}</h1>
+  <h1>{{ recipe.title }}</h1>
 
-<p>
-  Description: {{ recipe.description }}<br>
-  Prep Time: {{ recipe.prep_time }} minutes<br>
-  Cook Time: {{ recipe.cook_time }} minutes<br>
-  Total Time: {{ recipe.total_time }} minutes<br>
-  Serving Quantity: {{ recipe.serving_qty }}<br>
-  Source: {{ recipe.source }}<br>
-  Cuisine: {{ recipe.cuisine.cuisine_name }}<br>
-  <!-- Category: {% for category in recipe.categories %}{{ category.category_name }} {% endfor %} -->
-  Category: {{ recipe.categories|join(', ', attribute='category_name') }}
-</p>
+  <p>
+    Description: {{ recipe.description }}<br>
+    Prep Time: {{ recipe.prep_time }} minutes<br>
+    Cook Time: {{ recipe.cook_time }} minutes<br>
+    Total Time: {{ recipe.total_time }} minutes<br>
+    Serving Quantity: {{ recipe.serving_qty }}<br>
+    Source: {{ recipe.source }}<br>
+    Cuisine: {{ recipe.cuisine.cuisine_name }}<br>
+    <!-- Category: {% for category in recipe.categories %}{{ category.category_name }} {% endfor %} -->
+    Category: {{ recipe.categories|join(', ', attribute='category_name') }}
+  </p>
 
-<ul>
-  {% for recipe_step in recipe.recipe_steps %}
-    <li>
-        {{ recipe_step.step_num }}: {{ recipe_step.instruction }} 
-    </li>
-  {% endfor %}
-</ul>
+  <h3>Ingredient:</h3>
+  <ul>
+    {% for recipe_ingredient in recipe.recipe_ingredients %}
+      <li>
+          {{ recipe_ingredient.measurement }} {{ recipe_ingredient.ingredient.ingredient_name }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h3>Instructions:</h3>
+  <ul>
+    {% for recipe_step in recipe.recipe_steps %}
+      <li>
+          {{ recipe_step.step_num }}: {{ recipe_step.instruction }} 
+      </li>
+    {% endfor %}
+  </ul>
 
 {% endblock %}
