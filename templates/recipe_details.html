@@ -13,7 +13,8 @@
   Serving Quantity: {{ recipe.serving_qty }}<br>
   Source: {{ recipe.source }}<br>
   Cuisine: {{ recipe.cuisine.cuisine_name }}<br>
-  Category: {% for category in recipe.categories %}{{ category.category_name }} {% endfor %}
+  <!-- Category: {% for category in recipe.categories %}{{ category.category_name }} {% endfor %} -->
+  Category: {{ recipe.categories|join(', ', attribute='category_name') }}
 </p>
 
 <ul>
