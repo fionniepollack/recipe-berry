@@ -5,6 +5,14 @@
 {% block body %}
   <h1>{{ recipe.title }}</h1>
 
+  <ul style="list-style-type:none;">
+    {% for image in recipe.images %}
+      <li>
+          <img src="{{ image.image_url }}" alt="image" width="200" height="200">
+      </li>
+    {% endfor %}
+  </ul>
+
   <p>
     Description: {{ recipe.description }}<br>
     Prep Time: {{ recipe.prep_time }} minutes<br>
