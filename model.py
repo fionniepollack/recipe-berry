@@ -56,6 +56,9 @@ class Recipe(db.Model):
     # Define relationship between Recipe class and Ingredient class
     ingredients = db.relationship("Ingredient", secondary="recipe_ingredients")
 
+    # Define relationship between Recipe class and Image class
+    images = db.relationship("Image", secondary="recipe_images")
+
     def __repr__(self):
         return f'<Recipe recipe_id={self.recipe_id} title={self.title}>'
 
@@ -102,7 +105,7 @@ class RecipeStep(db.Model):
 #-----------------------------------------------------------------------------#
 
 class RecipeIngredient(db.Model):
-    """A recipe ingredient."""
+    """Associative table for the relationship between Recipe class and Ingredient class."""
 
     __tablename__ = 'recipe_ingredients'
 
@@ -113,7 +116,7 @@ class RecipeIngredient(db.Model):
     ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredients.ingredient_id'))
 
     recipe = db.relationship('Recipe', backref='recipe_ingredients')
-    ingredient_name = db.relationship('Ingredient', backref='recipe_ingredients')
+    ingredient = db.relationship('Ingredient', backref='recipe_ingredients')
 
     def __repr__(self):
         return f'<RecipeIngredient id={self.id}>'
@@ -140,7 +143,7 @@ class Ingredient(db.Model):
 #-----------------------------------------------------------------------------#
 
 class RecipeCategory(db.Model):
-    """Associative table for the relationships of recipe and category."""
+    """Associative table for the relationship between Recipe class and Category class."""
 
     __tablename__ = 'recipe_categories'
 
@@ -208,7 +211,7 @@ class Category(db.Model):
 #-----------------------------------------------------------------------------#
 
 class RecipeImage(db.Model):
-    """A recipe image."""
+    """Associative table for the relationship between Recipe class and Image class."""
 
     __tablename__ = 'recipe_images'
 
@@ -218,7 +221,7 @@ class RecipeImage(db.Model):
     image_id = db.Column(db.Integer, db.ForeignKey('images.image_id'))
 
     recipe = db.relationship('Recipe', backref='recipe_images')
-    image_name = db.relationship('Image', backref='recipe_images')
+    image = db.relationship('Image', backref='recipe_images')
 
     def __repr__(self):
         return f'<RecipeImage id={self.id}>'
@@ -231,6 +234,9 @@ class Image(db.Model):
 
     image_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     image_url = db.Column(db.String)
+
+    # Define relationship between Recipe class and Image class
+    recipes = db.relationship("Recipe", secondary="recipe_images")
 
     def __repr__(self):
         return f'<Image image_id={self.image_id} image={self.image}>'
