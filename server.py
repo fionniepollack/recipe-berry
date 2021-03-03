@@ -87,6 +87,7 @@ def create_recipe():
     """Show create recipe page."""
 
     cuisines = crud.get_cuisines()
+    categories = crud.get_categories()
 
     if request.method == "GET":
 
@@ -94,7 +95,7 @@ def create_recipe():
             flash("Please log in to create a new recipe.")
             return redirect('/')
 
-        return render_template("create_recipe.html", cuisines=cuisines)
+        return render_template("create_recipe.html", cuisines=cuisines, categories=categories)
 
     elif request.method == "POST":
 

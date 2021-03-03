@@ -43,6 +43,15 @@
     </p>
 
     <p>
+      Category
+      <select name="category_id" required>
+        {% for category in categories %}
+          <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+        {% endfor %}
+      </select>
+    </p>
+
+    <p>
       <input type="submit">
     </p>
   </form>
