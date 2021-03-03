@@ -79,6 +79,14 @@ def create_recipe():
 #- USER ROUTES ---------------------------------------------------------------#
 #-----------------------------------------------------------------------------#
 
+@app.route("/users")
+def all_users():
+    """View all users."""
+
+    users = crud.get_users()
+
+    return render_template('all_users.html', users=users)
+
 
 @app.route("/profile")
 def show_user():

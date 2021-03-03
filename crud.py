@@ -29,6 +29,14 @@ def create_user(email, password, first_name, last_name, join_date):
     return user
 
 
+def get_users():
+    """Return all users."""
+
+    users = User.query.all()
+
+    return users
+
+
 def get_user_by_email(email):
     """Return a user by email."""
 
