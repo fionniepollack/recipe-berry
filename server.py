@@ -68,17 +68,17 @@ def show_cuisine(cuisine_id):
 def create_recipe():
     """Show create recipe page."""
 
+    cuisines = crud.get_cuisines()
+
     if request.method == "GET":
 
         if session.get("user_id") == None:
             flash("Please log in to create a new recipe.")
             return redirect('/')
 
-        return render_template("create_recipe.html")
+        return render_template("create_recipe.html", cuisines=cuisines)
 
     elif request.method == "POST":
-
-        cuisine_name = request.form.get("cuisine")
 
         kwargs = {"title" : request.form.get("title"),
                   "description" : request.form.get("description"),
@@ -88,7 +88,7 @@ def create_recipe():
                   "serving_qty" : request.form.get("serving_qty"),
                   "source" : request.form.get("source"),
                   "user_id" : session.get("user_id"),
-                  "cuisine_id" : crud.get_cuisine_id_by_cuisine_name(cuisine_name)}
+                  "cuisine_id" : request.form.get("cuisine_id")}
 
         recipe = crud.create_recipe(**kwargs)
 
@@ -99,6 +99,7 @@ def create_recipe():
             flash('Error.')
 
         return redirect('/create_recipe')
+
 
 #-----------------------------------------------------------------------------#
 #- USER ROUTES ---------------------------------------------------------------#

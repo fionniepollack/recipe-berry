@@ -34,7 +34,12 @@
     </p>
 
     <p>
-      Cuisine <input type="text" name="cuisine" required>
+      Cuisine
+      <select name="cuisine_id" required>
+        {% for cuisine in cuisines %}
+          <option value="{{ cuisine.cuisine_id }}">{{ cuisine.cuisine_name }}</option>
+        {% endfor %}
+      </select>
     </p>
 
     <p>
