@@ -12,7 +12,8 @@
   Total Time: {{ recipe.total_time }} minutes<br>
   Serving Quantity: {{ recipe.serving_qty }}<br>
   Source: {{ recipe.source }}<br>
-  Cuisine: {{ recipe.cuisine.cuisine_name }}
+  Cuisine: {{ recipe.cuisine.cuisine_name }}<br>
+  Category: {% for category in recipe.categories %}{{ category.category_name }} {% endfor %}
 </p>
 
 <ul>
