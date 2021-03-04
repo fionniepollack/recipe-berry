@@ -114,7 +114,8 @@ def create_test_recipes(test_users):
         create_test_recipe_ingredients(test_recipe, recipe.recipe_id)
 
         # Seed database with recipe category
-        crud.create_recipe_category(recipe.recipe_id, test_recipe["strCategory"])
+        category = crud.get_category_by_name(test_recipe["strCategory"])
+        crud.create_recipe_category(recipe.recipe_id, category.category_id)
 
         # Seed database with an image
         image = create_test_image(test_recipe)

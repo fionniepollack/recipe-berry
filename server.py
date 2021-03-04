@@ -111,6 +111,9 @@ def create_recipe():
 
         recipe = crud.create_recipe(**kwargs)
 
+        category_id = request.form.get("category_id")
+        crud.create_recipe_category(recipe.recipe_id, category_id)
+
         if recipe:
             flash('Congrats! A new recipe was created.')
 

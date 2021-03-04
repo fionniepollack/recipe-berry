@@ -188,13 +188,16 @@ def get_category_by_id(category_id):
     return category
 
 
-def create_recipe_category(recipe_id, category_name):
+def get_category_by_name(category_name):
+    """Return a Category object that matches the given category_name"""
+
+    category = Category.query.filter(Category.category_name == category_name).first()
+
+    return category
+
+
+def create_recipe_category(recipe_id, category_id):
     """Given a recipe_id and category_name, create and return a new recipe category."""
-
-    # Get category object that matches the given category_name 
-    category_match = Category.query.filter(Category.category_name == category_name).first()
-
-    category_id = category_match.category_id
 
     recipe_category = RecipeCategory(recipe_id = recipe_id,
                                      category_id = category_id)

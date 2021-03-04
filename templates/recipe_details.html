@@ -25,7 +25,7 @@
     Category: {{ recipe.categories|join(', ', attribute='category_name') }}
   </p>
 
-  <h3>Ingredient:</h3>
+  <h3>Ingredients:</h3>
   <ul>
     {% for recipe_ingredient in recipe.recipe_ingredients %}
       <li>
@@ -43,4 +43,8 @@
     {% endfor %}
   </ul>
 
+  <!-- TODO -->
+  <!-- Allow user to add more than one category -->
+  <!-- Allow user to add ingredients -->
+  <!-- Allow user to add images -->
 {% endblock %}
