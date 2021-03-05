@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+
+    <!-- Import jQuery  -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
     <title>
       {% block title %}{% endblock %}
     </title>
@@ -19,5 +24,6 @@
     {% block body %}{% endblock %}
 
     {% block after_body %}{% endblock %}
+    <script src="/static/js/create-recipe.js"></script>
   </body>
 </html>
