@@ -13,9 +13,31 @@
       {% block title %}{% endblock %}
     </title>
 
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+
     {% block head %}{% endblock %}
   </head>
   <body>
+
+    <!-- Top Navigation Bar -->
+    <div class="topnav">
+      <a class="active" href="/">Home</a>
+      <a class="topnav" href="/recipes">Recipes</a>
+      <a class="topnav" href="/users">Users</a>
+      <a class="topnav" href="/cuisines">Cuisines</a>
+      <a class="topnav" href="/categories">Categories</a>
+      <a class="topnav" href="/profile">My Account</a>
+      <a class="topnav" href="/registration">Create a new account</a>
+      <a class="topnav" href="/authenticate">Login</a>
+      <a class="topnav" href="/create_recipe">Create a new recipe</a>
+      <a class="topnav" href="/logout">Logout</a>
+      <!-- <a href="#contact">Contact</a> -->
+      <!-- <a href="#about">About</a> -->
+      
+    </div>
+
+    <!-- Flashed Messages -->
     {% for msg in get_flashed_messages() %}
       <p class="flash-msg">
         {{ msg }}

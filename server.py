@@ -158,11 +158,16 @@ def all_users():
 def show_user():
     """Show details for the logged in user."""
 
-    user_id = session.get("user_id")
+    if session.get("user_id") == None:
+        flash("Please log in to view your account.")
+        return redirect('/')
 
-    user = crud.get_user_by_id(user_id)
+    else:
+        user_id = session.get("user_id")
 
-    return render_template("user_details.html", user=user)
+        user = crud.get_user_by_id(user_id)
+
+        return render_template("user_details.html", user=user)
 
 
 @app.route("/registration", methods=["GET"])

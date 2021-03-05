@@ -35,6 +35,7 @@ function removeIngredient() {
 
     if (ingredientInputListLength > 1) {
     $('#ingredient-item-' + ingredientInputListLength).remove();
+    $('#measurement-item-' + ingredientInputListLength).remove();
     $('#ingredient-br-' + ingredientInputListLength).remove();
     $('#num-ingredient').val(ingredientInputListLength - 1);
     }
