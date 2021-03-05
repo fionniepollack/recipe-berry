@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Create Recipe{% endblock %}
 
+{% block head_script %}
+  <script src="/static/js/create-recipe.js" defer></script>
+{% endblock %}
+
 {% block body %}
   <h1>Create New Recipe</h1>
 
@@ -52,15 +56,14 @@
     </p>
 
     <p>
-      Ingredients <button type="button" id="ingredient-button">Add Ingredient</button>
-      <ul>
+      Ingredients:
+      <ul style="list-style-type:none;">
         <li>
-          <input type="text" name="ingredient_text">
-          <!-- <input type="text"> -->
-          <!-- <button onclick="add()">Add</button> -->
-          <!-- <button onclick="remove()">Remove</button> -->
-          <!-- <div id="new_chq"></div> -->
-          <!-- <input type="hidden" value="1" id="total_chq"> -->
+          <input type="text">
+          <button id="add-ingredient">Add</button>
+          <button id="remove-ingredient">Remove</button>
+          <div id="ingredient-input-list"></div>
+          <input type="hidden" value="1" id="num-ingredient">
         </li>
       </ul>
     </p>
@@ -69,5 +72,4 @@
       <input type="submit">
     </p>
   </form>
-  <!-- <script src="/static/js/create-recipe.js"></script> -->
 {% endblock %}

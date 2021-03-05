@@ -1,28 +1,29 @@
 "use strict";
 
-const ingredient_button = $('#ingredient-button');
-ingredient_button.on('click', () => {
-  alert('Handled with jQuery!');
-});
+
+// Button to add an ingredient
+const addIngredientButton = $('#add-ingredient');
+addIngredientButton.on('click', addIngredient);
+
+function addIngredient() {
+  const newIngredientNum = parseInt($('#num-ingredient').val()) + 1;
+  const newIngredientInput = "<input type='text' id='ingredient-item-" + newIngredientNum + "'><br>";
+  
+  $('#ingredient-input-list').append(newIngredientInput);
+
+  $('#num-ingredient').val(newIngredientNum);
+}
 
 
-// $('.add').on('click', add);
-// $('.remove').on('click', remove);
+// Button to remove an ingredient
+const removeIngredientButton = $('#remove-ingredient');
+removeIngredientButton.on('click', removeIngredient);
 
-// function add() {
-//     const new_chq_no = parseInt($('#total_chq').val()) + 1;
-//     const new_input = "<input type='text' id='new_" + new_chq_no + "'>";
-    
-//     $('#new_chq').append(new_input);
+function removeIngredient() {
+    const ingredientInputListLength = $('#num-ingredient').val();
 
-//     $('#total_chq').val(new_chq_no);
-// }
-
-// function remove() {
-//     const last_chq_no = $('#total_chq').val();
-
-//     if (last_chq_no > 1) {
-//     $('#new_' + last_chq_no).remove();
-//     $('#total_chq').val(last_chq_no - 1);
-//     }
-// }
+    if (ingredientInputListLength > 1) {
+    $('#ingredient-item-' + ingredientInputListLength).remove();
+    $('#num-ingredient').val(ingredientInputListLength - 1);
+    }
+}
