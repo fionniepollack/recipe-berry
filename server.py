@@ -114,6 +114,24 @@ def create_recipe():
         category_id = request.form.get("category_id")
         crud.create_recipe_category(recipe.recipe_id, category_id)
 
+
+        # Get ingredient items in a dictionary
+        # If flat is False, returns all items as a list
+        request_dict = request.form.to_dict(flat=False)
+        print(f"********{request.form}*********")
+
+        print('PRINTING request_dict...')
+        print(request_dict)
+        print('END request_dict')
+
+        # ingredient_id = request.form.get("ingredients")
+
+
+        #TODO
+        #get ingredients
+        #get instructions
+        #get image
+
         if recipe:
             flash('Congrats! A new recipe was created.')
 

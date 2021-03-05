@@ -10,7 +10,7 @@
 
   <form action="/create_recipe" method="POST">
     <p>
-      Title <input type="text" name="title" placeholder="Ex: Very Berry Cake" required>
+      Title <input type="text" name="title" placeholder="Ex: Very Berry Cake">
     </p>
 
     <p>
@@ -59,9 +59,12 @@
       Ingredients:
       <ul style="list-style-type:none;">
         <li>
-          <input type="text">
-          <button id="add-ingredient">Add</button>
-          <button id="remove-ingredient">Remove</button>
+          <label>Ingredient Name</label>
+          <input type="text" name="ingredients">
+          <label>Measurement Amount</label>
+          <input type="text" name="measurements">
+          <button type="button" id="add-ingredient">Add</button>
+          <button type="button" id="remove-ingredient">Remove</button>
           <div id="ingredient-input-list"></div>
           <input type="hidden" value="1" id="num-ingredient">
         </li>
@@ -73,8 +76,8 @@
       <ul style="list-style-type:none;">
         <li>
           <input type="text">
-          <button id="add-instruction">Add</button>
-          <button id="remove-instruction">Remove</button>
+          <button type="button" id="add-instruction">Add</button>
+          <button type="button" id="remove-instruction">Remove</button>
           <div id="instruction-input-list"></div>
           <input type="hidden" value="1" id="num-instruction">
         </li>
