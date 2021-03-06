@@ -10,12 +10,7 @@ addIngredientButton.on('click', addIngredient);
 
 function addIngredient() {
   const newIngredientNum = parseInt($('#num-ingredient').val()) + 1;
-  // const newIngredientInput = "<input type='text' name='ingredients' id='ingredient-item-"
-  //                            + newIngredientNum
-  //                            + "'><br id='ingredient-br-"
-  //                            + newIngredientNum
-  //                            + "'>";
-  
+
   const newIngredientInput = `<input type='text' name='ingredients' list='ingredients' id='ingredient-item-${newIngredientNum}'>
                               <input type='text' name='measurements' id='measurement-item-${newIngredientNum}'>
                               <br id='ingredient-br-${newIngredientNum}'>`;
@@ -51,12 +46,14 @@ const addInstructionButton = $('#add-instruction');
 addInstructionButton.on('click', addInstruction);
 
 function addInstruction() {
-  // console.log("Running addInstruction..."); 
   const newInstructionNum = parseInt($('#num-instruction').val()) + 1;
 
   console.log("newInstructionNum = " + newInstructionNum)
 
-  const newInstructionInput = "<input type='text' name='instruction_items' id='instruction-item-" + newInstructionNum + "'><br id='instruction-br-" + newInstructionNum + "'>";
+  const newInstructionInput = `<li id='instruction-item-${newInstructionNum}'>
+                               <input type='text' name='instructions'>
+                               <br>
+                               </li>`;
 
   console.log("Appending newInstructionInput: " + newInstructionInput)
   $('#instruction-input-list').append(newInstructionInput);
@@ -74,7 +71,6 @@ function removeInstruction() {
 
     if (instructionInputListLength > 1) {
     $('#instruction-item-' + instructionInputListLength).remove();
-    $('#instruction-br-' + instructionInputListLength).remove();
     $('#num-instruction').val(instructionInputListLength - 1);
     }
 }

@@ -79,15 +79,16 @@
 
     <p>
       Instructions:
-      <ul style="list-style-type:none;">
-        <li>
-          <input type="text">
+      <ol>
+        <div id="instruction-input-list">
           <button type="button" id="add-instruction">Add</button>
           <button type="button" id="remove-instruction">Remove</button>
-          <div id="instruction-input-list"></div>
-          <input type="hidden" value="1" id="num-instruction">
-        </li>
-      </ul>
+            <li>
+              <input type="text" name="instructions">
+            </li>
+        </div>
+        <input type="hidden" value="1" id="num-instruction">
+      </ol>
     </p>
 
     <p>

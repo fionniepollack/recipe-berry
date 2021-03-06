@@ -121,33 +121,15 @@ def create_recipe():
         # Get ingredient items in a dictionary
         # If flat is False, returns all items as a list
         request_dict = request.form.to_dict(flat=False)
-        # print(f"********{request.form}*********")
-
-        # print('PRINTING request_dict...')
-        # print(request_dict)
-        # print('END request_dict')
 
         for ingredient, measurement in zip(request_dict["ingredients"], request_dict["measurements"]):
             ingredient_object = crud.create_ingredient(ingredient)
             crud.create_recipe_ingredient(recipe.recipe_id, ingredient_object.ingredient_id, measurement)
         
-        # for instruction in request_dict["instructions"]:
-        #     instruction = 
+        for step_num, instruction in enumerate(request_dict["instructions"]):
+            crud.create_recipe_step(recipe.recipe_id, step_num + 1, instruction)
 
-
-        # Check if ingredient exists
-        # If ingredient exists, connect ingredient to associated id
-            # Add ingredient using crud function
-
-        # If ingredient does not exist, add it to db and make a new id for it
-            # Upsert ingredient
-
-
-
-        #TODO
-        #get ingredients
-        #get instructions
-        #get image
+        # Get image
 
         if recipe:
             flash('Congrats! A new recipe was created.')

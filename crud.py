@@ -177,7 +177,7 @@ def create_ingredient(ingredient_name):
 
     # If ingredient does not already exists, create it and add to database
     if not ingredient:
-        ingredient = Ingredient(ingredient_name = ingredient_name)
+        ingredient = Ingredient(ingredient_name = ingredient_name.title())
 
         db.session.add(ingredient)
         db.session.commit()
@@ -193,11 +193,11 @@ def get_ingredients():
     return ingredients
 
 
-def upsert_ingredients(ingredient_name):
-    """Upsert."""
-    ingredient = Ingredient.query.filter(Ingredient.ingredient_name == ingredient_name).first()
+# def upsert_ingredients(ingredient_name):
+#     """Upsert."""
+#     ingredient = Ingredient.query.filter(Ingredient.ingredient_name == ingredient_name).first()
 
-    import pdb; pdb.set_trace()
+#     import pdb; pdb.set_trace()
 
 
 #-----------------------------------------------------------------------------#
