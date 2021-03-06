@@ -109,9 +109,9 @@ def create_cuisine(cuisine_name):
 
 
 def get_cuisines():
-    """Return all cuisines."""
+    """Return all cuisines in alphabetical order."""
 
-    cuisines = Cuisine.query.all()
+    cuisines = Cuisine.query.order_by(Cuisine.cuisine_name).all()
 
     return cuisines
 
@@ -216,9 +216,9 @@ def create_category(category_name):
 
 
 def get_categories():
-    """Return all categories."""
+    """Return all categories in alphabetical order."""
 
-    categories = Category.query.all()
+    categories = Category.query.order_by(Category.category_name).all()
 
     return categories
 
