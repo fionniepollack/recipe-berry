@@ -16,7 +16,7 @@ function addIngredient() {
   //                            + newIngredientNum
   //                            + "'>";
   
-  const newIngredientInput = `<input type='text' name='ingredients' id='ingredient-item-${newIngredientNum}'>
+  const newIngredientInput = `<input type='text' name='ingredients' list='ingredients' id='ingredient-item-${newIngredientNum}'>
                               <input type='text' name='measurements' id='measurement-item-${newIngredientNum}'>
                               <br id='ingredient-br-${newIngredientNum}'>`;
   

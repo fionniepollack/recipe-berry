@@ -86,16 +86,20 @@ def show_category(category_id):
 def create_recipe():
     """Show create recipe page."""
 
-    cuisines = crud.get_cuisines()
-    categories = crud.get_categories()
-
     if request.method == "GET":
+
+        cuisines = crud.get_cuisines()
+        categories = crud.get_categories()
+        ingredients = crud.get_ingredients()
 
         if session.get("user_id") == None:
             flash("Please log in to create a new recipe.")
             return redirect('/')
 
-        return render_template("create_recipe.html", cuisines=cuisines, categories=categories)
+        return render_template("create_recipe.html",
+                               cuisines=cuisines,
+                               categories=categories,
+                               ingredients=ingredients)
 
     elif request.method == "POST":
 
@@ -114,17 +118,30 @@ def create_recipe():
         category_id = request.form.get("category_id")
         crud.create_recipe_category(recipe.recipe_id, category_id)
 
-
         # Get ingredient items in a dictionary
         # If flat is False, returns all items as a list
         request_dict = request.form.to_dict(flat=False)
-        print(f"********{request.form}*********")
+        # print(f"********{request.form}*********")
 
-        print('PRINTING request_dict...')
-        print(request_dict)
-        print('END request_dict')
+        # print('PRINTING request_dict...')
+        # print(request_dict)
+        # print('END request_dict')
 
-        # ingredient_id = request.form.get("ingredients")
+        for ingredient, measurement in zip(request_dict["ingredients"], request_dict["measurements"]):
+            ingredient_object = crud.create_ingredient(ingredient)
+            crud.create_recipe_ingredient(recipe.recipe_id, ingredient_object.ingredient_id, measurement)
+        
+        # for instruction in request_dict["instructions"]:
+        #     instruction = 
+
+
+        # Check if ingredient exists
+        # If ingredient exists, connect ingredient to associated id
+            # Add ingredient using crud function
+
+        # If ingredient does not exist, add it to db and make a new id for it
+            # Upsert ingredient
+
 
 
         #TODO

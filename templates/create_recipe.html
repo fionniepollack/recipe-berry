@@ -60,7 +60,13 @@
       <ul style="list-style-type:none;">
         <li>
           <label>Ingredient Name</label>
-          <input type="text" name="ingredients">
+          <input type="text" list="ingredients" name="ingredients"/>
+          <datalist id="ingredients">
+          {% for ingredient in ingredients %}
+            <option>{{ ingredient.ingredient_name }}</option>
+          {% endfor %}
+          </datalist>
+          
           <label>Measurement Amount</label>
           <input type="text" name="measurements">
           <button type="button" id="add-ingredient">Add</button>

@@ -13,6 +13,9 @@ from model import (db,
                    Image,
                    connect_to_db)
 
+#-----------------------------------------------------------------------------#
+#- USER ----------------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 def create_user(email, password, first_name, last_name, join_date):
     """Create and return a new user."""
@@ -51,6 +54,10 @@ def get_user_by_id(user_id):
     return user
 
 
+#-----------------------------------------------------------------------------#
+#- RECIPE --------------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
+
 def create_recipe(title, **kwargs):
     """Create and return a new recipe."""
 
@@ -85,6 +92,10 @@ def get_recipe_by_id(recipe_id):
 
     return recipe
 
+
+#-----------------------------------------------------------------------------#
+#- CUISINE -------------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 def create_cuisine(cuisine_name):
     """Create and return a new cuisine."""
@@ -124,6 +135,10 @@ def get_cuisine_id_by_cuisine_name(cuisine_name):
     return cuisine_id
 
 
+#-----------------------------------------------------------------------------#
+#- RECIPE STEP ---------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
+
 def create_recipe_step(recipe_id, step_num, instruction):
     """Create and return a new recipe step."""
 
@@ -136,6 +151,10 @@ def create_recipe_step(recipe_id, step_num, instruction):
 
     return recipe_step
 
+
+#-----------------------------------------------------------------------------#
+#- RECIPE INGREDIENT ---------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 def create_recipe_ingredient(recipe_id, ingredient_id, measurement):
     """Create and return a new recipe ingredient."""
@@ -153,13 +172,37 @@ def create_recipe_ingredient(recipe_id, ingredient_id, measurement):
 def create_ingredient(ingredient_name):
     """Create and return a new ingredient."""
 
-    ingredient = Ingredient(ingredient_name = ingredient_name)
+    # Check if ingredient already exists
+    ingredient = Ingredient.query.filter(Ingredient.ingredient_name == ingredient_name).first()
 
-    db.session.add(ingredient)
-    db.session.commit()
+    # If ingredient does not already exists, create it and add to database
+    if not ingredient:
+        ingredient = Ingredient(ingredient_name = ingredient_name)
+
+        db.session.add(ingredient)
+        db.session.commit()
 
     return ingredient
 
+
+def get_ingredients():
+    """Return all ingredients in alphabetical order."""
+
+    ingredients = Ingredient.query.order_by(Ingredient.ingredient_name).all()
+
+    return ingredients
+
+
+def upsert_ingredients(ingredient_name):
+    """Upsert."""
+    ingredient = Ingredient.query.filter(Ingredient.ingredient_name == ingredient_name).first()
+
+    import pdb; pdb.set_trace()
+
+
+#-----------------------------------------------------------------------------#
+#- RECIPE CATEGORY -----------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 def create_category(category_name):
     """Create and return a new category."""
@@ -207,6 +250,10 @@ def create_recipe_category(recipe_id, category_id):
 
     return recipe_category
 
+
+#-----------------------------------------------------------------------------#
+#- RECIPE IMAGE --------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
 
 def create_image(image_url):
     """Create and return a new image."""
