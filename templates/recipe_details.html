@@ -36,16 +36,14 @@
   </ul>
 
   <h3>Instructions:</h3>
-  <ul>
+  <ul style="list-style-type:none;">
     {% for recipe_step in recipe.recipe_steps %}
       <li>
-          {{ recipe_step.step_num }}: {{ recipe_step.instruction }} 
+          {{ recipe_step.step_num }}. {{ recipe_step.instruction }} 
       </li>
     {% endfor %}
   </ul>
 
   <!-- TODO -->
   <!-- Allow user to add more than one category -->
-  <!-- Allow user to add ingredients -->
-  <!-- Allow user to add images -->
 {% endblock %}

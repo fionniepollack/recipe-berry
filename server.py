@@ -118,7 +118,7 @@ def create_recipe():
         category_id = request.form.get("category_id")
         crud.create_recipe_category(recipe.recipe_id, category_id)
 
-        # Get ingredient items in a dictionary
+        # Get ingredient, measurement, and instruction items in a dictionary
         # If flat is False, returns all items as a list
         request_dict = request.form.to_dict(flat=False)
 
@@ -129,7 +129,10 @@ def create_recipe():
         for step_num, instruction in enumerate(request_dict["instructions"]):
             crud.create_recipe_step(recipe.recipe_id, step_num + 1, instruction)
 
-        # Get image
+        # Get images from create recipe form
+        for image in request_dict["images"]:
+            image_object = crud.create_image(image)
+            crud.create_recipe_image(recipe.recipe_id, image_object.image_id)
 
         if recipe:
             flash('Congrats! A new recipe was created.')

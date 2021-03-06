@@ -66,7 +66,6 @@
             <option>{{ ingredient.ingredient_name }}</option>
           {% endfor %}
           </datalist>
-          
           <label>Measurement Amount</label>
           <input type="text" name="measurements">
           <button type="button" id="add-ingredient">Add</button>
@@ -89,6 +88,23 @@
         </div>
         <input type="hidden" value="1" id="num-instruction">
       </ol>
+    </p>
+
+    <p>
+      Images:
+      <ul style="list-style-type:none;">
+        <li>
+          <label for="url">Enter an https:// URL:</label>
+          <input type="url" name="images"
+                placeholder="https://example.com"
+                pattern="https://.*" size="30"
+                required>
+          <button type="button" id="add-image">Add</button>
+          <button type="button" id="remove-image">Remove</button>
+          <div id="image-input-list"></div>
+          <input type="hidden" value="1" id="num-image">
+        </li>
+      </ul>
     </p>
 
     <p>

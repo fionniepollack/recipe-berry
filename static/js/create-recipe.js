@@ -48,14 +48,11 @@ addInstructionButton.on('click', addInstruction);
 function addInstruction() {
   const newInstructionNum = parseInt($('#num-instruction').val()) + 1;
 
-  console.log("newInstructionNum = " + newInstructionNum)
-
   const newInstructionInput = `<li id='instruction-item-${newInstructionNum}'>
                                <input type='text' name='instructions'>
                                <br>
                                </li>`;
 
-  console.log("Appending newInstructionInput: " + newInstructionInput)
   $('#instruction-input-list').append(newInstructionInput);
 
   $('#num-instruction').val(newInstructionNum);
@@ -72,5 +69,40 @@ function removeInstruction() {
     if (instructionInputListLength > 1) {
     $('#instruction-item-' + instructionInputListLength).remove();
     $('#num-instruction').val(instructionInputListLength - 1);
+    }
+}
+
+
+//----------------------------------------------------------------------------//
+//- IMAGE BUTTONS ------------------------------------------------------------//
+//----------------------------------------------------------------------------//
+
+// Button to add an image
+const addImageButton = $('#add-image');
+addImageButton.on('click', addImage);
+
+function addImage() {
+  const newImageNum = parseInt($('#num-image').val()) + 1;
+
+  const newImageInput = `<input type='url' name='images' list='images' id='image-item-${newImageNum}'>
+                              <br id='image-br-${newImageNum}'>`;
+  
+  $('#image-input-list').append(newImageInput);
+
+  $('#num-image').val(newImageNum);
+}
+
+
+// Button to remove an image
+const removeImageButton = $('#remove-image');
+removeImageButton.on('click', removeImage);
+
+function removeImage() {
+    const imageInputListLength = $('#num-image').val();
+
+    if (imageInputListLength > 1) {
+    $('#image-item-' + imageInputListLength).remove();
+    $('#image-br-' + imageInputListLength).remove();
+    $('#num-image').val(imageInputListLength - 1);
     }
 }
