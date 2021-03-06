@@ -44,6 +44,12 @@
     {% endfor %}
   </ul>
 
-  <!-- TODO -->
-  <!-- Allow user to add more than one category -->
+  <p>
+    <!-- <button type="button" id="favorite-recipe">Add to favorites</button> -->
+    {% if recipe.user_id == session['user_id'] %}
+    <button type="button" id="delete-recipe">Delete Recipe</button>
+    <!-- <button type="button" id="update-recipe">Update Recipe</button> -->
+    {% endif %}
+  </p>
+
 {% endblock %}
