@@ -2,6 +2,10 @@
 
 {% block title %}{{ recipe.title }} - Details{% endblock %}
 
+{% block head_script %}
+  <!-- <script src="/static/js/delete-recipe.js" defer></script> -->
+{% endblock %}
+
 {% block body %}
   <h1>{{ recipe.title }}</h1>
 
@@ -45,11 +49,17 @@
   </ul>
 
   <p>
+
     <!-- <button type="button" id="favorite-recipe">Add to favorites</button> -->
-    {% if recipe.user_id == session['user_id'] %}
-    <button type="button" id="delete-recipe">Delete Recipe</button>
     <!-- <button type="button" id="update-recipe">Update Recipe</button> -->
+
+    {% if recipe.user_id == session['user_id'] %}
+    <form action="/recipes/{{ recipe.recipe_id }}" method="POST">
+      <!-- <input type="hidden" name="recipe_id" value="{{ recipe.recipe_id }}" id="recipe-id"> -->
+      <button type="submit" id="delete-recipe">Delete Recipe</button>
+    </form>
     {% endif %}
+
   </p>
 
 {% endblock %}

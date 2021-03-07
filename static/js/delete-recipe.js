@@ -1,12 +1,18 @@
 "use strict";
 
+const recipeId = parseInt($('#recipe-id').val());
+
 // Button to delete a recipe
 const deleteRecipeButton = $('#delete-recipe');
 deleteRecipeButton.on('click', deleteRecipe);
 
 function deleteRecipe() {
-  $.get('/status', { order: 123 }, (res) => {
-    $('#order-status').html(res);
+  $.ajax({
+    url: `/recipes/${recipeId}`,
+    type: 'DELETE',
+    success: function(response) {
+        window.location.href = response.data;
+    }
   });
 }
 

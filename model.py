@@ -43,6 +43,7 @@ class Recipe(db.Model):
     total_time = db.Column(db.Integer)
     serving_qty = db.Column(db.Integer)
     source = db.Column(db.String)
+    is_active = db.Column(db.Boolean, unique=False, default=True)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     cuisine_id = db.Column(db.Integer, db.ForeignKey('cuisines.cuisine_id'))
@@ -50,11 +51,14 @@ class Recipe(db.Model):
     user = db.relationship('User', backref='recipes')
     cuisine = db.relationship('Cuisine', backref='recipes')
 
-    # Define relationship between Recipe class and Category class
-    categories = db.relationship("Category", secondary="recipe_categories")
+    # Relationship between Recipe class and RecipeStep class
+    recipe_steps = db.relationship("RecipeStep", cascade="all, delete")
 
     # Define relationship between Recipe class and Ingredient class
     ingredients = db.relationship("Ingredient", secondary="recipe_ingredients")
+
+    # Define relationship between Recipe class and Category class
+    categories = db.relationship("Category", secondary="recipe_categories")
 
     # Define relationship between Recipe class and Image class
     images = db.relationship("Image", secondary="recipe_images")
@@ -94,7 +98,7 @@ class RecipeStep(db.Model):
 
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
 
-    recipe = db.relationship('Recipe', backref='recipe_steps')
+    recipe = db.relationship('Recipe')
 
     def __repr__(self):
         return f'<RecipeStep step_id={self.step_id} step_num={self.step_num} instruction={self.instruction}>'

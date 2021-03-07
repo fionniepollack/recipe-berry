@@ -30,7 +30,7 @@
       <a class="topnav" href="/profile">My Account</a>
       <a class="topnav" href="/create_recipe">Create a new recipe</a>
       <a class="topnav" href="/registration">Create a new account</a>
-      {% if session['user_id'] == None %}
+      {% if session.get('user_id') == None %}
         <a class="topnav" href="/authenticate">Login</a>
       {% else %}
         <a class="topnav" href="/logout">Logout</a>

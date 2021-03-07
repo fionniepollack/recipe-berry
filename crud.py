@@ -93,6 +93,16 @@ def get_recipe_by_id(recipe_id):
     return recipe
 
 
+def archive_recipe(recipe_id):
+    """Archive a recipe."""
+
+    recipe = get_recipe_by_id(recipe_id)
+
+    recipe.is_active = False
+
+    return recipe
+
+
 #-----------------------------------------------------------------------------#
 #- CUISINE -------------------------------------------------------------------#
 #-----------------------------------------------------------------------------#
