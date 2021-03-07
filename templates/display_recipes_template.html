@@ -1,0 +1,11 @@
+<ul>
+{% for recipe in recipes %}
+  {% if recipe.is_active %}
+  <li>
+    <a href="/recipes/{{ recipe.recipe_id }}">
+      {{ recipe.title }}
+    </a>
+  </li>
+  {% endif %}
+{% endfor %}
+</ul>

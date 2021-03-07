@@ -151,13 +151,6 @@ def archive_recipe(recipe_id):
 
     flash(f"You successfully deleted the {recipe.title} recipe from your account.")
 
-    # user_id = session.get("user_id")
-
-    # user = crud.get_user_by_id(user_id)
-
-    # return render_template("user_details.html", user=user)
-    # redirect('/profile', code=303)
-    # return url_for('homepage')
     return redirect('/profile')
 
 

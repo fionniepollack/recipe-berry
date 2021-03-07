@@ -100,6 +100,8 @@ def archive_recipe(recipe_id):
 
     recipe.is_active = False
 
+    db.session.commit()
+
     return recipe
 
 

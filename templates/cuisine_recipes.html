@@ -5,13 +5,8 @@
 {% block body %}
   <h1>{{ cuisine.cuisine_name }}</h1>
 
-  <ul>
-    {% for recipe in cuisine.recipes %}
-      <li>
-        <a href="/recipes/{{ recipe.recipe_id }}">
-          {{ recipe.title }}
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
+  {% with recipes = cuisine.recipes %}
+    {% include "display_recipes_template.html" %}
+  {% endwith %}
+
 {% endblock %}
