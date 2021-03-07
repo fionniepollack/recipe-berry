@@ -247,6 +247,31 @@ class Image(db.Model):
 
 
 #-----------------------------------------------------------------------------#
+#- RATING --------------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
+
+class Rating(db.Model):
+    """A rating."""
+
+    __tablename__ = 'ratings'
+
+    rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    rating_value = db.Column(db.Integer, unique=True)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
+
+    # Only one rating per user per recipe allowed
+    UniqueConstraint(user_id, recipe_id)
+
+    user = db.relationship('User', backref='ratings')
+    recipe = db.relationship('Recipe', backref='ratings')
+
+    def __repr__(self):
+        return f'<Rating rating_id={self.rating_id}>'
+
+
+#-----------------------------------------------------------------------------#
 
 
 def connect_to_db(flask_app, db_uri='postgresql:///recipeberry', echo=True):
