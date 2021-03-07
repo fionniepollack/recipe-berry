@@ -11,6 +11,7 @@ from model import (db,
                    Category,
                    RecipeImage,
                    Image,
+                   Rating,
                    connect_to_db)
 
 #-----------------------------------------------------------------------------#
@@ -288,6 +289,23 @@ def create_recipe_image(recipe_id, image_id):
     db.session.commit()
 
     return recipe_image
+
+
+#-----------------------------------------------------------------------------#
+#- RATING ----------------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
+
+def create_rating(rating_value, user_id, recipe_id):
+    """Create and return a new rating given a rating_value, user_id, and recipe_id."""
+
+    rating = Rating(rating_value = rating_value,
+                    user_id = user_id,
+                    recipe_id = recipe_id)
+
+    db.session.add(rating)
+    db.session.commit()
+
+    return rating
 
 
 #-----------------------------------------------------------------------------#

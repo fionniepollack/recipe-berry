@@ -123,6 +123,12 @@ def create_test_recipes(test_users):
         # Seed database with recipe image
         crud.create_recipe_image(recipe.recipe_id, image.image_id)
 
+        # Generate random rating
+        rating_value = randint(1,5)
+
+        # Seed database with rating
+        crud.create_rating(rating_value, user.user_id, recipe.recipe_id)
+
     return test_recipes_in_db
 
 
@@ -253,6 +259,32 @@ def create_test_image(test_recipe):
 
     return image
 
+
+def create_test_ratings():
+    """Create test ratings using Faker module."""
+
+    fake_rating = random.randint(1,5)
+
+
+
+    for n in range(5):
+        first_name = fake.unique.first_name()
+        last_name = fake.unique.last_name()
+        email = f"{first_name}.{last_name}@recipeberry.com"
+        password = "test"
+        join_date = datetime.now()
+
+        user = crud.create_user(email, password, first_name, last_name, join_date)
+        test_users.append(user)
+
+    # Create admin user that will always remain the same unlike users created with Faker
+    admin_user = crud.create_user("admin@recipeberry.com",
+                                  "admin",
+                                  "admin_first_name" ,
+                                  "admin_last_name",
+                                  "2021-02-25 21:24:17.727103")
+
+    return test_users
 
 #-----------------------------------------------------------------------------#
 
