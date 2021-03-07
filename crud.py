@@ -308,6 +308,22 @@ def create_rating(rating_value, user_id, recipe_id):
     return rating
 
 
+def get_ratings():
+    """Return all ratings."""
+
+    ratings = Rating.query.all()
+
+    return ratings
+
+
+def get_rating_by_user_and_recipe(user_id, recipe_id):
+    """Return a particular rating given a user_id and recipe_id."""
+
+    rating = Rating.query.filter(Rating.user_id == user_id, Rating.recipe_id == recipe_id).first()
+
+    return rating
+
+
 #-----------------------------------------------------------------------------#
 
 

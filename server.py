@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for
 from jinja2 import StrictUndefined
 from datetime import datetime
+import statistics
 
 from model import connect_to_db, User, Recipe
 import crud
@@ -39,11 +40,26 @@ def all_recipes():
 
 @app.route("/recipes/<recipe_id>")
 def show_recipe(recipe_id):
-    """Show details for a particular recipe."""
+    """Show recipe details for a particular recipe."""
 
     recipe = crud.get_recipe_by_id(recipe_id)
 
-    return render_template("recipe_details.html", recipe=recipe)
+    ratings = crud.get_ratings()
+    rating_values = [rating.rating_value for rating in ratings]
+    average_rating = statistics.mean(rating_values)
+
+    user_id = session.get("user_id")
+
+    if user_id != None:
+        user_rating = crud.get_rating_by_user_and_recipe(user_id, recipe_id)
+
+    else:
+        user_rating = None
+
+    return render_template("recipe_details.html",
+                           recipe=recipe,
+                           average_rating=average_rating,
+                           user_rating=user_rating)
 
 
 @app.route("/cuisines")
@@ -152,6 +168,23 @@ def archive_recipe(recipe_id):
     flash(f"You successfully deleted the {recipe.title} recipe from your account.")
 
     return redirect('/profile')
+
+
+@app.route("/recipes/rating/<recipe_id>", methods=["POST"])
+def rate_recipe(recipe_id):
+    """Rate a recipe."""
+
+    rating_value = request.form.get("rating_value")
+
+    user_id = session.get("user_id")
+
+    rating = crud.create_rating(rating_value, user_id, recipe_id)
+
+    recipe = crud.get_recipe_by_id(recipe_id)
+
+    flash(f"You successfully submitted a rating for the {recipe.title} recipe.")
+
+    return redirect(f'/recipes/{recipe_id}')
 
 
 #-----------------------------------------------------------------------------#
