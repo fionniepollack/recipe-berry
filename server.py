@@ -86,14 +86,17 @@ def show_recipe(recipe_id):
 
     if user_id != None:
         user_rating = crud.get_rating_by_user_and_recipe(user_id, recipe_id)
+        is_favorite = crud.get_favorite_by_user_and_recipe(user_id, recipe_id)
 
     else:
         user_rating = None
+        is_favorite = None
 
     return render_template("recipe_details.html",
                            recipe=recipe,
                            average_rating=average_rating,
-                           user_rating=user_rating)
+                           user_rating=user_rating,
+                           is_favorite=is_favorite)
 
 
 @app.route("/cuisines")
@@ -222,18 +225,29 @@ def rate_recipe(recipe_id):
 
 
 @app.route("/recipes/favorite/<recipe_id>", methods=["POST"])
-def favorite_recipe(recipe_id):
-    """Favorite a recipe."""
+def create_favorite(recipe_id):
+    """Create a favorite recipe."""
 
     user_id = session.get("user_id")
 
-    favorite = crud.create_favorite(user_id, recipe_id)
+    crud.create_favorite(user_id, recipe_id)
 
     recipe = crud.get_recipe_by_id(recipe_id)
 
-    # flash(f"You added the {recipe.title} recipe to your Favorites.")
-
     return f"You added the {recipe.title} recipe to your Favorites."
+
+
+@app.route("/recipes/unfavorite/<recipe_id>", methods=["POST"])
+def delete_favorite(recipe_id):
+    """Delete a favorite recipe."""
+
+    user_id = session.get("user_id")
+
+    crud.delete_favorite(user_id, recipe_id)
+
+    recipe = crud.get_recipe_by_id(recipe_id)
+
+    return f"You removed the {recipe.title} recipe to your Favorites."
 
 
 #-----------------------------------------------------------------------------#

@@ -341,6 +341,25 @@ def create_favorite(user_id, recipe_id):
     return favorite
 
 
+def get_favorite_by_user_and_recipe(user_id, recipe_id):
+    """Given a user_id and recipe_id, return a particular favorite"""
+
+    favorite = Favorite.query.filter(Favorite.user_id == user_id, Favorite.recipe_id == recipe_id).first()
+
+    return favorite
+
+
+def delete_favorite(user_id, recipe_id):
+    """Given a user_id and recipe_id, delete and return a favorite."""
+
+    favorite_to_delete = get_favorite_by_user_and_recipe(user_id, recipe_id)
+
+    db.session.delete(favorite_to_delete)
+    db.session.commit()
+
+    return favorite_to_delete
+
+
 #-----------------------------------------------------------------------------#
 
 
