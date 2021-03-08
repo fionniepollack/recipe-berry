@@ -247,29 +247,44 @@ class Image(db.Model):
 
 
 #-----------------------------------------------------------------------------#
-#- RATING --------------------------------------------------------------------#
+#- FAVORITE ------------------------------------------------------------------#
 #-----------------------------------------------------------------------------#
 
-class Rating(db.Model):
-    """A rating."""
+class Favorite(db.Model):
+    """A favorite."""
 
-    __tablename__ = 'ratings'
+    __tablename__ = 'favorites'
 
-    rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    rating_value = db.Column(db.Integer)
+    favorite_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
 
-    # Only one rating per user per recipe allowed
-    db.UniqueConstraint(user_id, recipe_id)
-
-    user = db.relationship('User', backref='ratings')
-    recipe = db.relationship('Recipe', backref='ratings')
+    user = db.relationship('User', backref='favorites')
+    recipe = db.relationship('Recipe', backref='favorites')
 
     def __repr__(self):
-        return f'<Rating rating_id={self.rating_id}>'
+        return f'<Favorite favorite_id={self.favorite_id}>'
 
+
+#-----------------------------------------------------------------------------#
+#- USER ----------------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
+
+class User(db.Model):
+    """A user."""
+
+    __tablename__ = 'users'
+
+    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    email = db.Column(db.String, unique=True)
+    password = db.Column(db.String)
+    first_name = db.Column(db.String)
+    last_name = db.Column(db.String)
+    join_date = db.Column(db.DateTime)
+
+    def __repr__(self):
+        return f'<User user_id={self.user_id} email={self.email}>'
 
 #-----------------------------------------------------------------------------#
 
