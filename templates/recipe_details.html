@@ -78,9 +78,30 @@
     {% endif %}
   {% endif %}
 
+  <!-- Favorite a Recipe Feature -->
+  <form>
+    <p>
+      Favorite a Recipe:
+      <ul style="list-style-type:none;">
+        <li>
+          <!-- <label for="favorite">Add to favorites</label> -->
+          <!-- <input type="url" name="images"> -->
+          <button type="button" id="favorite-recipe">Add to favorites</button>
+          <!-- <button type="button" id="add-image">Add</button> -->
+          <!-- <button type="button" id="remove-image">Remove</button> -->
+          <!-- <div id="image-input-list"></div> -->
+          <input type="hidden" value="{{ recipe.user.user_id }}" id="user-id">
+          <input type="hidden" value="{{ recipe.recipe_id }}" id="recipe-id">
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+  </form>
 
   <p>
-    <!-- <button type="button" id="favorite-recipe">Add to favorites</button> -->
     <!-- <button type="button" id="update-recipe">Update Recipe</button> -->
 
     <!-- Delete (Archive) Recipe Feature -->
