@@ -4,6 +4,7 @@
 
 {% block head_script %}
   <!-- <script src="/static/js/delete-recipe.js" defer></script> -->
+  <script src="/static/js/favorite-recipe.js" defer></script>
 {% endblock %}
 
 {% block body %}
@@ -87,6 +88,7 @@
           <!-- <label for="favorite">Add to favorites</label> -->
           <!-- <input type="url" name="images"> -->
           <button type="button" id="favorite-recipe">Add to favorites</button>
+          <button type="button" id="unfavorite-recipe" style="display: none;">Remove from favorites</button>
           <!-- <button type="button" id="add-image">Add</button> -->
           <!-- <button type="button" id="remove-image">Remove</button> -->
           <!-- <div id="image-input-list"></div> -->

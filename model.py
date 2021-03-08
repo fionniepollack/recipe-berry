@@ -247,6 +247,31 @@ class Image(db.Model):
 
 
 #-----------------------------------------------------------------------------#
+#- RATING --------------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
+
+class Rating(db.Model):
+    """A rating."""
+
+    __tablename__ = 'ratings'
+
+    rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    rating_value = db.Column(db.Integer)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.recipe_id'))
+
+    # Only one rating per user per recipe allowed
+    db.UniqueConstraint(user_id, recipe_id)
+
+    user = db.relationship('User', backref='ratings')
+    recipe = db.relationship('Recipe', backref='ratings')
+
+    def __repr__(self):
+        return f'<Rating rating_id={self.rating_id}>'
+
+
+#-----------------------------------------------------------------------------#
 #- FAVORITE ------------------------------------------------------------------#
 #-----------------------------------------------------------------------------#
 
@@ -266,25 +291,6 @@ class Favorite(db.Model):
     def __repr__(self):
         return f'<Favorite favorite_id={self.favorite_id}>'
 
-
-#-----------------------------------------------------------------------------#
-#- USER ----------------------------------------------------------------------#
-#-----------------------------------------------------------------------------#
-
-class User(db.Model):
-    """A user."""
-
-    __tablename__ = 'users'
-
-    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    email = db.Column(db.String, unique=True)
-    password = db.Column(db.String)
-    first_name = db.Column(db.String)
-    last_name = db.Column(db.String)
-    join_date = db.Column(db.DateTime)
-
-    def __repr__(self):
-        return f'<User user_id={self.user_id} email={self.email}>'
 
 #-----------------------------------------------------------------------------#
 

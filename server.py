@@ -63,7 +63,6 @@ def homepage():
 #- RECIPE ROUTES -------------------------------------------------------------#
 #-----------------------------------------------------------------------------#
 
-
 @app.route("/recipes")
 def all_recipes():
     """View all recipes."""
@@ -220,6 +219,21 @@ def rate_recipe(recipe_id):
     flash(f"You successfully submitted a rating for the {recipe.title} recipe.")
 
     return redirect(f'/recipes/{recipe_id}')
+
+
+@app.route("/recipes/favorite/<recipe_id>", methods=["POST"])
+def favorite_recipe(recipe_id):
+    """Favorite a recipe."""
+
+    user_id = session.get("user_id")
+
+    favorite = crud.create_favorite(user_id, recipe_id)
+
+    recipe = crud.get_recipe_by_id(recipe_id)
+
+    # flash(f"You added the {recipe.title} recipe to your Favorites.")
+
+    return f"You added the {recipe.title} recipe to your Favorites."
 
 
 #-----------------------------------------------------------------------------#

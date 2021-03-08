@@ -12,6 +12,7 @@ from model import (db,
                    RecipeImage,
                    Image,
                    Rating,
+                   Favorite,
                    connect_to_db)
 
 #-----------------------------------------------------------------------------#
@@ -322,6 +323,22 @@ def get_rating_by_user_and_recipe(user_id, recipe_id):
     rating = Rating.query.filter(Rating.user_id == user_id, Rating.recipe_id == recipe_id).first()
 
     return rating
+
+
+#-----------------------------------------------------------------------------#
+#- FAVORITE ------------------------------------------------------------------#
+#-----------------------------------------------------------------------------#
+
+def create_favorite(user_id, recipe_id):
+    """Given a user_id and recipe_id, create and return a favorite."""
+
+    favorite = Favorite(user_id = user_id,
+                        recipe_id = recipe_id)
+
+    db.session.add(favorite)
+    db.session.commit()
+
+    return favorite
 
 
 #-----------------------------------------------------------------------------#
