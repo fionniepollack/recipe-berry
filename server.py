@@ -2,8 +2,9 @@
 
 from flask import Flask, render_template, request, flash, session, redirect, url_for
 from jinja2 import StrictUndefined
-from datetime import datetime
+from datetime import datetime, date
 import statistics
+from random import choice, randint
 
 from model import connect_to_db, User, Recipe
 import crud
@@ -11,6 +12,8 @@ import crud
 app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
+
+FEATURED_RECIPE = {"recipe_id" : None, "date" : date(1970, 1, 1)}
 
 
 #-----------------------------------------------------------------------------#
@@ -21,7 +24,34 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     """Show homepage."""
 
-    return render_template("homepage.html")
+    # If current date is FR date
+        # Fetch FR recipe ids
+    # Else
+        # Get all recipes
+        # Get 3 random recipes
+        # Update FR date to today, current date
+        # Update FR recipe ids
+
+    global FEATURED_RECIPE
+
+    current_date = date.today()
+
+    if FEATURED_RECIPE["date"] == current_date:
+        print("***********INSIDE IF STATEMENT*************")
+        recipe_id = FEATURED_RECIPE["recipe_id"]
+        recipe = crud.get_recipe_by_id(recipe_id)
+        print(f"***********{recipe_id}*************")
+
+    else:
+        print("***********INSIDE ELSE STATEMENT*************")
+        FEATURED_RECIPE["date"] = current_date
+        recipes = crud.get_recipes()
+        recipe = choice(recipes)
+        FEATURED_RECIPE["recipe_id"] = recipe.recipe_id
+        print(f"***********{recipe.recipe_id}*************")
+
+
+    return render_template("homepage.html", recipe=recipe)
 
 
 #-----------------------------------------------------------------------------#
