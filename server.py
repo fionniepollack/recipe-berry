@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, flash, session, redirect, url
 from jinja2 import StrictUndefined
 from datetime import datetime, date
 import statistics
-from random import choice, randint
+from random import choice, randint, sample
 
 from model import connect_to_db, User, Recipe
 import crud
@@ -13,7 +13,7 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
-FEATURED_RECIPE = {"recipe_id" : None, "date" : date(1970, 1, 1)}
+FEATURED_RECIPE = {"recipes" : [], "date" : date(1970, 1, 1)}
 
 
 #-----------------------------------------------------------------------------#
@@ -37,21 +37,26 @@ def homepage():
     current_date = date.today()
 
     if FEATURED_RECIPE["date"] == current_date:
-        print("***********INSIDE IF STATEMENT*************")
-        recipe_id = FEATURED_RECIPE["recipe_id"]
-        recipe = crud.get_recipe_by_id(recipe_id)
-        print(f"***********{recipe_id}*************")
+        # print("***********INSIDE IF STATEMENT*************")
+        featured_recipes = FEATURED_RECIPE["recipes"]
+        # for recipe_id in recipe_ids:
+        #     recipe = crud.get_recipe_by_id(recipe_id)
+        # print(f"***********{recipe_id}*************")
 
     else:
-        print("***********INSIDE ELSE STATEMENT*************")
+        # print("***********INSIDE ELSE STATEMENT*************")
         FEATURED_RECIPE["date"] = current_date
         recipes = crud.get_recipes()
-        recipe = choice(recipes)
-        FEATURED_RECIPE["recipe_id"] = recipe.recipe_id
-        print(f"***********{recipe.recipe_id}*************")
 
+        # Get 3 random recipes
+        # Use sample to avoid duplicates
+        featured_recipes = sample(recipes, 3)
+        # for recipe in featured_recipes:
+        #     FEATURED_RECIPE["recipe_id"] = recipe.recipe_id
+        FEATURED_RECIPE["recipes"] = featured_recipes
+        # print(f"***********{recipe.recipe_id}*************")
 
-    return render_template("homepage.html", recipe=recipe)
+    return render_template("homepage.html", featured_recipes=featured_recipes)
 
 
 #-----------------------------------------------------------------------------#

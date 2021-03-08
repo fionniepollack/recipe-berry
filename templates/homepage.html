@@ -14,14 +14,14 @@
   <h3>Featured Recipes of the Day</h3>
 
   <ul style="list-style-type:none;">
-    <!-- {% for image in recipe.images %} -->
-      <li>
-          <img src="{{ recipe.images[0].image_url }}" alt="image" width="200" height="200">
-      </li>
-      <li>
-        Recipe: recipe.title
-      </li>
-    <!-- {% endfor %} -->
+  {% for recipe in featured_recipes %}
+    <li>
+        <img src="{{ recipe.images[0].image_url }}" alt="image" width="200" height="200">
+    </li>
+    <li>
+      {{ recipe.title }}
+    </li>
+  {% endfor %}
   </ul>
 
   <br>
