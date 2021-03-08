@@ -19,7 +19,9 @@
         <img src="{{ recipe.images[0].image_url }}" alt="image" width="200" height="200">
     </li>
     <li>
-      {{ recipe.title }}
+      <a href="/recipes/{{ recipe.recipe_id }}">
+        {{ recipe.title }}
+      </a>
     </li>
   {% endfor %}
   </ul>
