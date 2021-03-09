@@ -2,41 +2,47 @@
 {% block title %}Recipe Berry Home{% endblock %}
 
 {% block body %}
-  <h1>Welcome to Recipe Berry!</h1>
-  <h3>
-      Your virtual cookbook organizer to store, manage, and share all your favorite recipes. 
-      <br>
-      Find inspiration for your next meal with your new recipe friend, Recipe Berry.
-  </h3>
+<h1>Welcome to Recipe Berry!</h1>
+<h3>
+  Your virtual cookbook organizer to store, manage, and share all your favorite recipes.
   <br>
+  Find inspiration for your next meal with your new recipe friend, Recipe Berry.
+</h3>
+<br>
 
-  <!-- Show Featured Recipes of the Day -->
-  <h3>Featured Recipes of the Day</h3>
+<!-- Show Featured Recipes of the Day -->
+<h3>Featured Recipes of the Day</h3>
 
-  <ul style="list-style-type:none;">
-  {% for recipe in featured_recipes %}
-    <li>
-        <img src="{{ recipe.images[0].image_url }}" alt="image" width="200" height="200">
-    </li>
-    <li>
-      <a href="/recipes/{{ recipe.recipe_id }}">
-        {{ recipe.title }}
-      </a>
-    </li>
-  {% endfor %}
-  </ul>
+<div class="container">
+  <div class="row">
+    {% for recipe in featured_recipes %}
+    <div class="col-4">
+      <div class="card" style="width: 18rem;">
+        <img src="{{ recipe.images[0].image_url }}" class="card-img-top" alt="image" height="200">
+        <div class="card-body">
+          <p class="card-text">
+            <a href="/recipes/{{ recipe.recipe_id }}">
+              {{ recipe.title }}
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 
-  <br>
+<br>
 
-  <!-- Search Feature -->
-  <h3>Search - Recipe Titles</h3>
-  <form action="/search" method="GET">
-    <p>
-      Search <input type="text" name="search_string" placeholder="Search for recipes">
-    </p>
+<!-- Search Feature -->
+<h3>Search - Recipe Titles</h3>
+<form action="/search" method="GET">
+  <p>
+    Search <input type="text" name="search_string" placeholder="Search for recipes">
+  </p>
 
-    <p>
-      <input type="submit">
-    </p>
-  </form>
+  <p>
+    <input type="submit">
+  </p>
+</form>
 {% endblock %}
