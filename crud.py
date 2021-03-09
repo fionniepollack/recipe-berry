@@ -360,6 +360,14 @@ def delete_favorite(user_id, recipe_id):
     return favorite_to_delete
 
 
+def get_favorites_by_user_id(user_id):
+    """Given a user_id, return all favorites."""
+
+    favorites = Favorite.query.filter(Favorite.user_id == user_id).all()
+
+    return favorites
+
+
 #-----------------------------------------------------------------------------#
 
 

@@ -6,8 +6,22 @@
   <h1>{{ user.first_name }} {{ user.last_name }}</h1>
   <h2>{{ user.email }}</h2>
 
-  {% with recipes = user.recipes %}
-    {% include "display_recipes_template.html" %}
-  {% endwith %}
+  <p>
+    Your Recipes:
+    {% with recipes = user.recipes %}
+      {% include "display_recipes_template.html" %}
+    {% endwith %}
+  </p>
+
+  <p>
+    Your Favorite Recipes:
+    {% for favorite in user.favorites %}
+    <li>
+      <a href="/recipes/{{ favorite.recipe.recipe_id }}">
+        {{ favorite.recipe.title }}
+      </a>
+    </li>
+    {% endfor %}
+  </p>
 
 {% endblock %}
