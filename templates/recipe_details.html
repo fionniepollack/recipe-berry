@@ -82,38 +82,20 @@
   <!-- Favorite a recipe feature -->
   {% if session.get('user_id') %}
     {% if is_favorite %}
-    <form>
-      <p>
-        <ul style="list-style-type:none;">
-          <li>
-            <button type="button" id="favorite-recipe" style="display: none;">Add to favorites</button>
-            <button type="button" id="unfavorite-recipe">Remove from favorites</button>
-            <input type="hidden" value="{{ recipe.user.user_id }}" id="user-id">
-            <input type="hidden" value="{{ recipe.recipe_id }}" id="recipe-id">
-          </li>
-        </ul>
-      </p>
-      <p>
-        <input type="submit">
-      </p>
-    </form>
+    <p>
+      <button type="button" id="favorite-recipe" style="display: none;">Add to favorites</button>
+      <button type="button" id="unfavorite-recipe">Remove from favorites</button>
+      <input type="hidden" value="{{ recipe.user.user_id }}" id="user-id">
+      <input type="hidden" value="{{ recipe.recipe_id }}" id="recipe-id">
+    </p>
 
     {% else %}
-    <form>
-      <p>
-        <ul style="list-style-type:none;">
-          <li>
-            <button type="button" id="favorite-recipe">Add to favorites</button>
-            <button type="button" id="unfavorite-recipe" style="display: none;">Remove from favorites</button>
-            <input type="hidden" value="{{ recipe.user.user_id }}" id="user-id">
-            <input type="hidden" value="{{ recipe.recipe_id }}" id="recipe-id">
-          </li>
-        </ul>
-      </p>
-      <p>
-        <input type="submit">
-      </p>
-    </form>
+    <p>
+      <button type="button" id="favorite-recipe">Add to favorites</button>
+      <button type="button" id="unfavorite-recipe" style="display: none;">Remove from favorites</button>
+      <input type="hidden" value="{{ recipe.user.user_id }}" id="user-id">
+      <input type="hidden" value="{{ recipe.recipe_id }}" id="recipe-id">
+    </p>
     {% endif %}
   {% endif %}
 
