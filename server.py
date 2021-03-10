@@ -357,6 +357,7 @@ def logout():
     
     else:
         session["user_id"] = None
+        session["first_name"] = None
         flash("User has been successfully logged out.")
 
     return redirect('/')

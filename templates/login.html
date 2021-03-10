@@ -2,9 +2,10 @@
 {% block title %}Login{% endblock %}
 
 {% block body %}
-  <h1>Login</h1>
+<h1 class="my-4">Login</h1>
+<!-- <br> -->
 
-  <form action="/authenticate" method="POST">
+<!-- <form action="/authenticate" method="POST">
     <p>
       Email <input type="text" name="email" placeholder="email@recipeberry.com" required>
     </p>
@@ -16,5 +17,58 @@
     <p>
       <input type="submit">
     </p>
-  </form>
+  </form> -->
+
+
+<form action="/authenticate" method="POST">
+  <div class="row g-3 align-items-center">
+    <div class="row">
+      <div class="col-auto">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+      </div>
+      <div class="col-auto">
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-auto">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+    </div>
+    <div class="col-auto">
+      <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+    </div>
+  </div>
+  <!-- <div class="row">
+      <div class="col-auto">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+    </div> -->
+  <div class="row">
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+  </div>
+</form>
+
+
+
+<!-- <div class="row g-3 align-items-center">
+  <div class="col-auto">
+    <label for="inputPassword6" class="col-form-label">Password</label>
+  </div>
+  <div class="col-auto">
+    <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+  </div>
+  <div class="col-auto">
+    <span id="passwordHelpInline" class="form-text">
+      Must be 8-20 characters long.
+    </span>
+  </div>
+</div> -->
+
 {% endblock %}
