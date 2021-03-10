@@ -16,3 +16,8 @@ body {
     letter-spacing: 0;
     line-height: 1.7;
 }
+
+a:link {
+    color: #005a87;
+    text-decoration: none;
+  }

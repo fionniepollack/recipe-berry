@@ -32,6 +32,8 @@
 
 <body>
 
+
+
   <!-- Top Navigation Bar -->
   <!-- <div class="topnav">
     <a class="active" href="/">Home</a>
@@ -52,38 +54,42 @@
   <!-- <a href="#about">About</a> -->
   <!-- </div> -->
 
+
+  <!-- Image Logo sourced from https://www.vecteezy.com/vector-art/1013015-watercolor-bowl-with-blueberries-and-strawberries -->
   <div class="d-flex justify-content-center">
-    <img id="logo-main"
-      src="https://static.vecteezy.com/system/resources/previews/001/013/015/non_2x/watercolor-bowl-with-blueberries-and-strawberries-vector.jpg"
-      width="180">
+    <a href="/"><img id="logo-main"
+        src="https://static.vecteezy.com/system/resources/previews/001/013/015/non_2x/watercolor-bowl-with-blueberries-and-strawberries-vector.jpg"
+        width="180"></a>
   </div>
   <div class="d-flex justify-content-center">
-    <h1>Recipe Berry</h1>
+    <a href="/">
+      <h1>Recipe Berry</h1>
+    </a>
   </div>
 
 
   <!-- Bootstrap Navigation Bar -->
-  <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- <div class="container"> -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">Recipe Berry</a>
+        <!-- <a class="navbar-brand" href="/">Recipe Berry</a> -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarSupportedContent">
+          <ul class="navbar-nav">
 
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link active" href="#">About</a>
             </li>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Recipes
               </a>
@@ -95,7 +101,7 @@
             </li>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 {% with first_name = session.get('first_name') %}
                 {% if first_name == None %}
@@ -127,7 +133,7 @@
         </div>
       </div>
     </nav>
-  </div>
+  <!-- </div> -->
 
 
   <!-- Flashed Messages -->
