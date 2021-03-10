@@ -18,7 +18,7 @@
     {% for recipe in featured_recipes %}
     <div class="col-4">
       <div class="card" style="width: 18rem;">
-        <img src="{{ recipe.images[0].image_url }}" class="card-img-top" alt="image" height="200">
+        <img src="{{ recipe.images[0].image_url }}" class="card-img-top" alt="image" width="200">
         <div class="card-body">
           <p class="card-text">
             <a href="/recipes/{{ recipe.recipe_id }}">
@@ -34,7 +34,7 @@
 
 <br>
 
-<!-- Search Feature -->
+<!-- Search Feature
 <h3>Search - Recipe Titles</h3>
 <form action="/search" method="GET">
   <p>
@@ -45,4 +45,4 @@
     <input type="submit">
   </p>
 </form>
-{% endblock %}
+{% endblock %} -->

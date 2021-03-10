@@ -331,6 +331,7 @@ def authenticate():
         # Check if password matches passowrd in db for user
         if password == user.password:
             session["user_id"] = user.user_id
+            session["first_name"] = user.first_name
             flash("Logged in!")
             return redirect('/')
 
