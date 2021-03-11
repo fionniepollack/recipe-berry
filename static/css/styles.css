@@ -2,7 +2,7 @@
 
 body {
     color: #333;
-    font-family: lora,serif;
+    font-family: 'Lora' ,serif;
     font-size: 14px;
     font-weight: 200;
     letter-spacing: .5px;
@@ -21,3 +21,23 @@ a:link {
     color: #005a87;
     text-decoration: none;
   }
+
+.logo {
+    font-family: 'Sofia', cursive;
+    /* font-family: 'Lora' ,serif; */
+    font-size: 70px;
+}
+
+/* .cropped {
+    width: 150px; /* width of container */
+    /* height: 150px; height of container */
+    /* overflow: hidden;
+    border: 5px solid black;
+} */ */
+
+/* .cropped img {
+    margin: -10px 0px 0px -180px;
+} */
+
+  /* font-family: 'Lora', serif;
+  font-family: 'Sofia', cursive; */
