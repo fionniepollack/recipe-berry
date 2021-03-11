@@ -36,8 +36,8 @@ def create_test_users():
     # Create admin user that will always remain the same unlike users created with Faker
     admin_user = crud.create_user("admin@recipeberry.com",
                                   "admin",
-                                  "admin_first_name" ,
-                                  "admin_last_name",
+                                  "Admin",
+                                  "Admin",
                                   "2021-02-25 21:24:17.727103")
 
     return test_users
