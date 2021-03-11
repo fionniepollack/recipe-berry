@@ -49,7 +49,7 @@ function addInstruction() {
   const newInstructionNum = parseInt($('#num-instruction').val()) + 1;
 
   const newInstructionInput = `<li id='instruction-item-${newInstructionNum}'>
-                               <input type='text' name='instructions'>
+                               <input type='text' size='120' name='instructions'>
                                <br>
                                </li>`;
 
@@ -84,7 +84,7 @@ addImageButton.on('click', addImage);
 function addImage() {
   const newImageNum = parseInt($('#num-image').val()) + 1;
 
-  const newImageInput = `<input type='url' name='images' list='images' id='image-item-${newImageNum}'>
+  const newImageInput = `<input type='url' size='100' name='images' list='images' id='image-item-${newImageNum}'>
                               <br id='image-br-${newImageNum}'>`;
   
   $('#image-input-list').append(newImageInput);

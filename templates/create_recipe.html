@@ -3,113 +3,242 @@
 {% block title %}Create Recipe{% endblock %}
 
 {% block head_script %}
-  <script src="/static/js/create-recipe.js" defer></script>
+<script src="/static/js/create-recipe.js" defer></script>
 {% endblock %}
 
 {% block body %}
-  <h1>Create New Recipe</h1>
 
-  <form action="/create_recipe" method="POST">
-    <p>
-      Title <input type="text" name="title" placeholder="Ex: Very Berry Cake">
-    </p>
+<form action="/create_recipe" method="POST" class="row g-3" style="margin-left:100px;margin-right:100px;">
+  <h1 class="h3 mt-5 mb-3 font-weight-normal">Create a New Recipe</h1>
 
-    <p>
-      Description <input type="text" name="description">
-    </p>
+  <!-- Title -->
+  <div class="col-md-12">
+    <label for="inputTitle" class="form-label">Title</label>
+    <input type="text" class="form-control" id="inputTitle" name="title" placeholder="Ex: Very Berry Cake">
+  </div>
 
-    <p>
-      Prep Time (minutes) <input type="number" name="prep_time" min="1" max="300">
-    </p>
+  <!-- Description -->
+  <div class="col-md-12">
+    <label for="inputDescription" class="form-label">Description</label>
+    <textarea class="form-control" id="inputDescription" rows="3" name="description"></textarea>
+  </div>
 
-    <p>
-      Cook Time (minutes) <input type="number" name="cook_time" min="1" max="300">
-    </p>
+  <!-- Prep Time -->
+  <div class="col-2">
+    <label for="inputPrepTime" class="form-label">Prep Time (minutes)</label>
+    <input type="number" class="form-control" id="inputPrepTime" name="prep_time" min="0" max="300">
+  </div>
 
-    <p>
-      Total Time (minutes) <input type="number" name="total_time" min="1" max="300">
-    </p>
+  <!-- Cook Time -->
+  <div class="col-2">
+    <label for="inputCookTime" class="form-label">Cook Time (minutes)</label>
+    <input type="number" class="form-control" id="inputCookTime" name="cook_time" min="0" max="300">
+  </div>
 
-    <p>
-      Serving Quantity <input type="number" name="serving_qty" min="1" max="100">
-    </p>
+  <!-- Total Time -->
+  <div class="col-2">
+    <label for="inputTotalTime" class="form-label">Total Time (minutes)</label>
+    <input type="number" class="form-control" id="inputTotalTime" name="total_time" min="0" max="300">
+  </div>
 
-    <p>
-      Source <input type="text" name="source">
-    </p>
+  <!-- Serving Quantity -->
+  <div class="col-2">
+    <label for="inputServingQuantity" class="form-label">Serving Quantity</label>
+    <input type="number" class="form-control" id="inputServingQuantity" name="serving_qty" min="0" max="50">
+  </div>
 
-    <p>
-      Cuisine
-      <select name="cuisine_id" required>
-        {% for cuisine in cuisines %}
-          <option value="{{ cuisine.cuisine_id }}">{{ cuisine.cuisine_name }}</option>
-        {% endfor %}
-      </select>
-    </p>
+  <!--  Cuisine -->
+  <div class="col-md-2">
+    <label for="inputCuisine" class="form-label">Cuisine</label>
+    <select id="inputCuisine" class="form-select" name="cuisine_id" required>
+      <option selected>Choose...</option>
+      {% for cuisine in cuisines %}
+      <option value="{{ cuisine.cuisine_id }}">{{ cuisine.cuisine_name }}</option>
+      {% endfor %}
+    </select>
+  </div>
 
-    <p>
-      Category
-      <select name="category_id" required>
-        {% for category in categories %}
-          <option value="{{ category.category_id }}">{{ category.category_name }}</option>
-        {% endfor %}
-      </select>
-    </p>
+  <!--  Category -->
+  <div class="col-md-2">
+    <label for="inputCategory" class="form-label">Category</label>
+    <select id="inputCategory" class="form-select" name="category_id" required>
+      <option selected>Choose...</option>
+      {% for category in categories %}
+      <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+      {% endfor %}
+    </select>
+  </div>
 
-    <p>
-      Ingredients:
-      <ul style="list-style-type:none;">
-        <li>
-          <label>Ingredient Name</label>
-          <input type="text" list="ingredients" name="ingredients"/>
-          <datalist id="ingredients">
+  <!-- Source -->
+  <div class="col-md-12">
+    <label for="inputSource" class="form-label">Source</label>
+    <input type="text" class="form-control" id="inputSource" name="source">
+  </div>
+
+  <!-- Ingredients -->
+  <label for="url">Ingredients</label>
+  <div class="input-group">
+    <ul style="list-style-type:none;">
+      <li>
+        <label>Ingredient Name</label>
+        <input type="text" list="ingredients" name="ingredients" />
+        <datalist id="ingredients">
           {% for ingredient in ingredients %}
-            <option>{{ ingredient.ingredient_name }}</option>
+          <option>{{ ingredient.ingredient_name }}</option>
           {% endfor %}
-          </datalist>
-          <label>Measurement Amount</label>
-          <input type="text" name="measurements">
-          <button type="button" id="add-ingredient">Add</button>
-          <button type="button" id="remove-ingredient">Remove</button>
-          <div id="ingredient-input-list"></div>
-          <input type="hidden" value="1" id="num-ingredient">
-        </li>
-      </ul>
-    </p>
+        </datalist>
+        <label>Measurement Amount</label>
+        <input type="text" name="measurements">
+        <button class="btn btn-outline-secondary" type="button" id="add-ingredient">Add</button>
+        <button class="btn btn-outline-secondary" type="button" id="remove-ingredient">Remove</button>
+        <div id="ingredient-input-list"></div>
+        <input type="hidden" value="1" id="num-ingredient">
+      </li>
+    </ul>
+  </div>
 
-    <p>
-      Instructions:
-      <ol>
-        <div id="instruction-input-list">
-          <button type="button" id="add-instruction">Add</button>
-          <button type="button" id="remove-instruction">Remove</button>
-            <li>
-              <input type="text" name="instructions">
-            </li>
-        </div>
-        <input type="hidden" value="1" id="num-instruction">
-      </ol>
-    </p>
-
-    <p>
-      Images:
-      <ul style="list-style-type:none;">
+  <!-- Instructions -->
+  <label for="url">Instructions</label>
+  <div class="input-group">
+    <ol>
+      <div id="instruction-input-list">
         <li>
-          <label for="url">Enter an https:// URL:</label>
-          <input type="url" name="images"
-                placeholder="https://example.com"
-                pattern="https://.*" size="30"
-                required>
-          <button type="button" id="add-image">Add</button>
-          <button type="button" id="remove-image">Remove</button>
-          <div id="image-input-list"></div>
-          <input type="hidden" value="1" id="num-image">
-        </li>
-      </ul>
-    </p>
+          <input type="text" name="instructions" size="120">
+          <button class="btn btn-outline-secondary" type="button" id="add-instruction">Add</button>
+          <button class="btn btn-outline-secondary" type="button" id="remove-instruction">Remove</button>
+      </div>
+      <input type="hidden" value="1" id="num-instruction">
+      </li>
+    </ol>
+  </div>
 
-    <p>
-      <input type="submit">
-    </p>
-  </form>
+  <!-- Images -->
+  <label for="url">Image(s) - Enter an https:// URL</label>
+  <div class="input-group">
+    <!-- <label for="url" class="form-label">Image(s) - Enter an https:// URL:</label> -->
+    <ul style="list-style-type:none;margin:0;padding:0;">
+      <li>
+        <!-- <label for="url">Enter an https:// URL:</label> -->
+        <input type="url" name="images" placeholder="https://example.com" pattern="https://.*" size="100" required>
+        <button class="btn btn-outline-secondary" type="button" id="add-image">Add</button>
+        <button class="btn btn-outline-secondary" type="button" id="remove-image">Remove</button>
+        <div id="image-input-list"></div>
+        <input type="hidden" value="1" id="num-image">
+      </li>
+    </ul>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Add New Recipe</button>
+  </div>
+</form>
+
+
+
+
+<!-- <h1>Create New Recipe</h1>
+
+<form action="/create_recipe" method="POST">
+  <p>
+    Title <input type="text" name="title" placeholder="Ex: Very Berry Cake">
+  </p>
+
+  <p>
+    Description <input type="text" name="description">
+  </p>
+
+  <p>
+    Prep Time (minutes) <input type="number" name="prep_time" min="1" max="300">
+  </p>
+
+  <p>
+    Cook Time (minutes) <input type="number" name="cook_time" min="1" max="300">
+  </p>
+
+  <p>
+    Total Time (minutes) <input type="number" name="total_time" min="1" max="300">
+  </p>
+
+  <p>
+    Serving Quantity <input type="number" name="serving_qty" min="1" max="100">
+  </p>
+
+  <p>
+    Source <input type="text" name="source">
+  </p>
+
+  <p>
+    Cuisine
+    <select name="cuisine_id" required>
+      {% for cuisine in cuisines %}
+      <option value="{{ cuisine.cuisine_id }}">{{ cuisine.cuisine_name }}</option>
+      {% endfor %}
+    </select>
+  </p>
+
+  <p>
+    Category
+    <select name="category_id" required>
+      {% for category in categories %}
+      <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+      {% endfor %}
+    </select>
+  </p>
+
+  <p>
+    Ingredients:
+  <ul style="list-style-type:none;">
+    <li>
+      <label>Ingredient Name</label>
+      <input type="text" list="ingredients" name="ingredients" />
+      <datalist id="ingredients">
+        {% for ingredient in ingredients %}
+        <option>{{ ingredient.ingredient_name }}</option>
+        {% endfor %}
+      </datalist>
+      <label>Measurement Amount</label>
+      <input type="text" name="measurements">
+      <button type="button" id="add-ingredient">Add</button>
+      <button type="button" id="remove-ingredient">Remove</button>
+      <div id="ingredient-input-list"></div>
+      <input type="hidden" value="1" id="num-ingredient">
+    </li>
+  </ul>
+  </p>
+
+  <p>
+    Instructions:
+  <ol>
+    <div id="instruction-input-list">
+      <button type="button" id="add-instruction">Add</button>
+      <button type="button" id="remove-instruction">Remove</button>
+      <li>
+        <input type="text" name="instructions">
+      </li>
+    </div>
+    <input type="hidden" value="1" id="num-instruction">
+  </ol>
+  </p>
+
+  <p>
+    Images:
+  <ul style="list-style-type:none;">
+    <li>
+      <label for="url">Enter an https:// URL:</label>
+      <input type="url" name="images" placeholder="https://example.com" pattern="https://.*" size="30" required>
+      <button type="button" id="add-image">Add</button>
+      <button type="button" id="remove-image">Remove</button>
+      <div id="image-input-list"></div>
+      <input type="hidden" value="1" id="num-image">
+    </li>
+  </ul>
+  </p>
+
+  <p>
+    <input type="submit">
+  </p>
+</form> -->
+
+
 {% endblock %}
