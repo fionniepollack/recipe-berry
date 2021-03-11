@@ -332,16 +332,17 @@ def authenticate():
         if password == user.password:
             session["user_id"] = user.user_id
             session["first_name"] = user.first_name
-            flash("Logged in!")
+            flash(f"Welcome, {user.first_name}!")
             return redirect('/')
 
         # If user password does not match, flash error message
         else:
-            flash("Invalid password.")
+            flash("The password you entered is invalid. Please try again.")
 
     # If user does not exist, flash error message
     else:
-        flash("User does not exist.")
+        flash("The email address you entered has not been registered with Recipe Berry."
+              "Please create a new account to start cooking with Recipe Berry.")
 
     return redirect('/authenticate')
 
@@ -351,6 +352,7 @@ def logout():
     """Handle user logout."""
 
     user_id = session.get("user_id")
+    first_name = session.get("first_name")
 
     if user_id == None:
         flash("There is no user logged in to logout.")
@@ -358,7 +360,7 @@ def logout():
     else:
         session["user_id"] = None
         session["first_name"] = None
-        flash("User has been successfully logged out.")
+        flash(f"Goodbye, {first_name}. Hope to cook with you again soon.")
 
     return redirect('/')
 
