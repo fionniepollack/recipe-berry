@@ -37,7 +37,12 @@
 
 <body>
 
-
+  <!-- Flashed Messages -->
+  {% for msg in get_flashed_messages() %}
+  <p class="flash-msg">
+    {{ msg }}
+  </p>
+  {% endfor %}
 
   <!-- Top Navigation Bar -->
   <!-- <div class="topnav">
@@ -137,14 +142,6 @@
     </div>
   </nav>
   <!-- </div> -->
-
-
-  <!-- Flashed Messages -->
-  {% for msg in get_flashed_messages() %}
-  <p class="flash-msg">
-    {{ msg }}
-  </p>
-  {% endfor %}
 
   {% block body %}{% endblock %}
 
