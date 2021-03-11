@@ -2,22 +2,17 @@
 
 body {
     color: #333;
+    background-color: #fff;
     font-family: 'Lora' ,serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 200;
-    letter-spacing: .5px;
-    line-height: 2;
-    margin: 5px;
+    letter-spacing: 0;
+    line-height: 1.7;
+    margin-top: 0px;
     margin-left: 50px;
     margin-right: 50px;
     margin-bottom: 100px;
     overflow-x: hidden;
-}
-
-body {
-    font-size: 16px;
-    letter-spacing: 0;
-    line-height: 1.7;
 }
 
 a:link {
@@ -26,44 +21,11 @@ a:link {
   }
 
 .logo {
+     color: #2763BB;
     font-family: 'Sofia', cursive;
-    /* font-family: 'Lora' ,serif; */
     font-size: 70px;
 }
 
-/* .cropped {
-    width: 150px; /* width of container */
-    /* height: 150px; height of container */
-    /* overflow: hidden;
-    border: 5px solid black;
-} */ */
-
-/* .cropped img {
-    margin: -10px 0px 0px -180px;
-} */
-
-  /* font-family: 'Lora', serif;
-  font-family: 'Sofia', cursive; */
-
-
-/* 
-.email {
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-}
-
-.password {
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-top: 0px;
-} */
-
-
-
-
-
-.no-bullets {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+#logo-main {
+    opacity: 0.90;
   }
