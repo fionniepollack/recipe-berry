@@ -103,7 +103,7 @@
     <!-- <button type="button" id="update-recipe">Update Recipe</button> -->
 
     <!-- Delete (Archive) Recipe Feature -->
-    {% if recipe.user_id == session['user_id'] %}
+    {% if recipe.user_id == session.get('user_id') %}
     <form action="/recipes/{{ recipe.recipe_id }}" method="POST">
       <!-- <input type="hidden" name="recipe_id" value="{{ recipe.recipe_id }}" id="recipe-id"> -->
       <button type="submit" id="delete-recipe">Delete Recipe</button>
