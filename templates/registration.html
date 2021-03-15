@@ -4,16 +4,17 @@
 
 {% block body %}
 
-<div class="text-center mt-3">
+<div class="text-center mt-5">
   <form action="/registration" method="POST" style="max-width:300px;margin:auto;">
     <h1 class="h3 mb-3 font-weight-normal">Create a New Account</h1>
-    <input type="email" name="email" class="mb-3 form-control" id="emailAddress" placeholder="Email Address" required autofocus>
+    <input type="email" name="email" class="mb-3 form-control" id="emailAddress" placeholder="Email Address" required
+      autofocus>
     <input type="password" name="password" class="mb-3 form-control" id="password" placeholder="Password" required>
     <input type="text" name="first_name" class="mb-3 form-control" id="first_name" placeholder="First Name" required>
     <input type="text" name="last_name" class="mb-3 form-control" id="last_name" placeholder="Last Name" required>
-        <div class="mt-3">
-          <button class="btn btn-lg btn-primary btn-block">Sign In</button>
-        </div>
+    <div class="mt-3">
+      <button class="btn btn-lg btn-primary btn-block" style="background-color: #005a87;">Create New Account</button>
+    </div>
   </form>
 </div>
 

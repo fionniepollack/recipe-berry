@@ -3,18 +3,23 @@
 {% block title %}{{ recipe.title }} - Details{% endblock %}
 
 {% block head_script %}
-  <!-- <script src="/static/js/delete-recipe.js" defer></script> -->
-  <script src="/static/js/favorite-recipe.js" defer></script>
+<!-- <script src="/static/js/delete-recipe.js" defer></script> -->
+<script src="/static/js/favorite-recipe.js" defer></script>
 {% endblock %}
 
 {% block body %}
+
+<div class="text-start mt-5" style="margin-left:50px;margin-right:50px;">
+
   <h1>{{ recipe.title }}</h1>
+
+  <!-- <h1>{{ recipe.title }}</h1> -->
 
   <ul style="list-style-type:none;">
     {% for image in recipe.images %}
-      <li>
-          <img src="{{ image.image_url }}" alt="image" width="200" height="200">
-      </li>
+    <li>
+      <img src="{{ image.image_url }}" alt="image" width="200" height="200">
+    </li>
     {% endfor %}
   </ul>
 
@@ -34,18 +39,18 @@
   <h3>Ingredients:</h3>
   <ul>
     {% for recipe_ingredient in recipe.recipe_ingredients %}
-      <li>
-          {{ recipe_ingredient.measurement }} {{ recipe_ingredient.ingredient.ingredient_name }}
-      </li>
+    <li>
+      {{ recipe_ingredient.measurement }} {{ recipe_ingredient.ingredient.ingredient_name }}
+    </li>
     {% endfor %}
   </ul>
 
   <h3>Instructions:</h3>
   <ul style="list-style-type:none;">
     {% for recipe_step in recipe.recipe_steps %}
-      <li>
-          {{ recipe_step.step_num }}. {{ recipe_step.instruction }} 
-      </li>
+    <li>
+      {{ recipe_step.step_num }}. {{ recipe_step.instruction }}
+    </li>
     {% endfor %}
   </ul>
 
@@ -56,47 +61,47 @@
 
   <!-- Rating Feature -->
   <!-- If user logged in -->
-    <!-- If user does not have a rating for recipe, show rate recipe button -->
-    <!-- If user does have a rating for recipe, show user's rating for recipe -->
+  <!-- If user does not have a rating for recipe, show rate recipe button -->
+  <!-- If user does have a rating for recipe, show user's rating for recipe -->
 
   {% if session.get('user_id') %}
-    {% if user_rating %}
-    <p>
-      Your rating for this recipe: {{ user_rating.rating_value }}
-    </p>
-    {% else %}
-    <p>
-      <form action="/recipes/rating/{{ recipe.recipe_id }}" method="POST">
-        Rate this Recipe:
-        <select name="rating_value">
-          {% for num in range(1,6) %}
-          <option value="{{ num }}">{{ num }}</option>
-          {% endfor %}
-        </select>
-        <button type="submit" id="rate-recipe">Rate this recipe</button>
-      </form>
-    </p>
-    {% endif %}
+  {% if user_rating %}
+  <p>
+    Your rating for this recipe: {{ user_rating.rating_value }}
+  </p>
+  {% else %}
+  <p>
+  <form action="/recipes/rating/{{ recipe.recipe_id }}" method="POST">
+    Rate this Recipe:
+    <select name="rating_value">
+      {% for num in range(1,6) %}
+      <option value="{{ num }}">{{ num }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" id="rate-recipe">Rate this recipe</button>
+  </form>
+  </p>
+  {% endif %}
   {% endif %}
 
   <!-- Favorite a recipe feature -->
   {% if session.get('user_id') %}
-    {% if is_favorite %}
-    <p>
-      <button type="button" id="favorite-recipe" style="display: none;">Add to favorites</button>
-      <button type="button" id="unfavorite-recipe">Remove from favorites</button>
-      <input type="hidden" value="{{ recipe.user.user_id }}" id="user-id">
-      <input type="hidden" value="{{ recipe.recipe_id }}" id="recipe-id">
-    </p>
+  {% if is_favorite %}
+  <p>
+    <button type="button" id="favorite-recipe" style="display: none;">Add to favorites</button>
+    <button type="button" id="unfavorite-recipe">Remove from favorites</button>
+    <input type="hidden" value="{{ recipe.user.user_id }}" id="user-id">
+    <input type="hidden" value="{{ recipe.recipe_id }}" id="recipe-id">
+  </p>
 
-    {% else %}
-    <p>
-      <button type="button" id="favorite-recipe">Add to favorites</button>
-      <button type="button" id="unfavorite-recipe" style="display: none;">Remove from favorites</button>
-      <input type="hidden" value="{{ recipe.user.user_id }}" id="user-id">
-      <input type="hidden" value="{{ recipe.recipe_id }}" id="recipe-id">
-    </p>
-    {% endif %}
+  {% else %}
+  <p>
+    <button type="button" id="favorite-recipe">Add to favorites</button>
+    <button type="button" id="unfavorite-recipe" style="display: none;">Remove from favorites</button>
+    <input type="hidden" value="{{ recipe.user.user_id }}" id="user-id">
+    <input type="hidden" value="{{ recipe.recipe_id }}" id="recipe-id">
+  </p>
+  {% endif %}
   {% endif %}
 
   <p>
@@ -104,11 +109,13 @@
 
     <!-- Delete (Archive) Recipe Feature -->
     {% if recipe.user_id == session.get('user_id') %}
-    <form action="/recipes/{{ recipe.recipe_id }}" method="POST">
-      <!-- <input type="hidden" name="recipe_id" value="{{ recipe.recipe_id }}" id="recipe-id"> -->
-      <button type="submit" id="delete-recipe">Delete Recipe</button>
-    </form>
-    {% endif %}
+  <form action="/recipes/{{ recipe.recipe_id }}" method="POST">
+    <!-- <input type="hidden" name="recipe_id" value="{{ recipe.recipe_id }}" id="recipe-id"> -->
+    <button type="submit" id="delete-recipe">Delete Recipe</button>
+  </form>
+  {% endif %}
   </p>
 
-{% endblock %}
+</div>
+
+  {% endblock %}

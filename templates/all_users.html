@@ -2,15 +2,17 @@
 {% block title %}All Users{% endblock %}
 
 {% block body %}
-  <h1>All Users</h1>
 
-  <ul>
-    {% for user in users %}
-      <li>
-        <a href="/users/{{ user.user_id }}">
-          {{ user.email }}
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
+<h1>All Users</h1>
+
+<ul>
+  {% for user in users %}
+  <li>
+    <a href="/users/{{ user.user_id }}">
+      {{ user.email }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+
 {% endblock %}

@@ -3,10 +3,15 @@
 {% block title %}{{ cuisine.cuisine_name }} - Recipes{% endblock %}
 
 {% block body %}
-  <h1>{{ cuisine.cuisine_name }}</h1>
+
+<div class="text-start mt-3" style="margin-left:50px;margin-right:50px;">
+
+  <h1 class="h3 mt-5 mb-3 font-weight-normal">{{ cuisine.cuisine_name }}</h1>
 
   {% with recipes = cuisine.recipes %}
-    {% include "display_recipes_template.html" %}
+  {% include "display_recipes_template.html" %}
   {% endwith %}
+
+</div>
 
 {% endblock %}

@@ -2,15 +2,21 @@
 {% block title %}All Categories{% endblock %}
 
 {% block body %}
-  <h1>All Categories</h1>
+
+<div class="text-start mt-3" style="margin-left:50px;margin-right:50px;">
+
+  <h1 class="h3 mt-5 mb-3 font-weight-normal">All Categories</h1>
 
   <ul>
     {% for category in categories %}
-      <li>
-        <a href="/categories/{{ category.category_id }}">
-          {{ category.category_name }}
-        </a>
-      </li>
+    <li>
+      <a href="/categories/{{ category.category_id }}">
+        {{ category.category_name }}
+      </a>
+    </li>
     {% endfor %}
   </ul>
+
+</div>
+
 {% endblock %}

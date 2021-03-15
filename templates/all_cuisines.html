@@ -2,15 +2,21 @@
 {% block title %}All Cuisines{% endblock %}
 
 {% block body %}
-  <h1>All Cuisines</h1>
+
+<div class="text-start mt-3" style="margin-left:50px;margin-right:50px;">
+
+  <h1 class="h3 mt-5 mb-3 font-weight-normal">All Cuisines</h1>
 
   <ul>
     {% for cuisine in cuisines %}
-      <li>
-        <a href="/cuisines/{{ cuisine.cuisine_id }}">
-          {{ cuisine.cuisine_name }}
-        </a>
-      </li>
+    <li>
+      <a href="/cuisines/{{ cuisine.cuisine_id }}">
+        {{ cuisine.cuisine_name }}
+      </a>
+    </li>
     {% endfor %}
   </ul>
+
+</div>
+
 {% endblock %}
