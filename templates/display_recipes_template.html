@@ -1,11 +1,22 @@
-<ul>
-{% for recipe in recipes %}
-  {% if recipe.is_active %}
-  <li>
-    <a href="/recipes/{{ recipe.recipe_id }}">
-      {{ recipe.title }}
-    </a>
-  </li>
-  {% endif %}
-{% endfor %}
-</ul>
+<div class="d-flex justify-content-center">
+  <div class="container-fluid">
+    <div class="row">
+      {% for recipe in recipes %}
+      {% if recipe.is_active %}
+      <div class="col-auto">
+        <div class="card" style="width: 18rem;">
+          <img src="{{ recipe.images[0].image_url }}" class="card-img-top" alt="image" width="200">
+          <div class="card-body">
+            <p class="card-text">
+              <a href="/recipes/{{ recipe.recipe_id }}">
+                {{ recipe.title }}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

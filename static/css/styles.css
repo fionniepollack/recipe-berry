@@ -1,5 +1,10 @@
 /* CSS styling for recipe berry app */
 
+a:link {
+  color: #005a87;
+  text-decoration: none;
+}
+
 body {
     color: #333;
     background-color: #fff;
@@ -9,16 +14,31 @@ body {
     letter-spacing: 0;
     line-height: 1.7;
     margin-top: 0px;
-    margin-left: 50px;
-    margin-right: 50px;
+    /* margin-left: 50px; */
+    /* margin-right: 50px; */
     margin-bottom: 100px;
     overflow-x: hidden;
 }
 
-a:link {
-    color: #005a87;
-    text-decoration: none;
-  }
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+  /* width: 18px; */
+}
+
+  /* h3 mt-5 mb-3 font-weight-normal */
+
+  /* h1 { 
+    display: block;
+    font-size: 1.8em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0; */
+    /* text-align: center; */
+  /* } */
+
 
 .logo {
      color: #2763BB;
@@ -29,3 +49,53 @@ a:link {
 #logo-main {
     opacity: 0.90;
   }
+
+.nav-item {
+  margin-right: 50px;
+}
+
+
+
+
+
+/* CSS styling for featured recipes on hompeage.html */
+
+.container {
+  position: relative;
+  width: 50%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #005a87;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+  text-align: center;
+}
