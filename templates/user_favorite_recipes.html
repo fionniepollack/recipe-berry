@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.email }} - Details{% endblock %}
+
+{% block body %}
+<div class="text-start mt-3" style="margin-left:50px;margin-right:50px;">
+  <h1 class="h3 mt-5 mb-3 font-weight-normal">{{ user.first_name }} {{ user.last_name }}'s Favorite Recipes:</h1>
+  <p>
+    {% if user.favorites | length == 0 %}
+    You currently do not have any favorite recipes.
+    {% else %}
+    {% for favorite in user.favorites %}
+    <li>
+      <a href="/recipes/{{ favorite.recipe.recipe_id }}">
+        {{ favorite.recipe.title }}
+      </a>
+    </li>
+    {% endfor %}
+    {% endif %}
+  </p>
+</div>
+{% endblock %}

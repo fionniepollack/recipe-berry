@@ -3,18 +3,25 @@
 {% block title %}{{ user.email }} - Details{% endblock %}
 
 {% block body %}
-  <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-  <h2>{{ user.email }}</h2>
+<div class="text-start mt-3" style="margin-left:50px;margin-right:50px;">
+  <h1 class="h3 mt-5 mb-3 font-weight-normal">{{ user.first_name }} {{ user.last_name }}'s Recipes:</h1>
+  <!-- <p>Email: {{ user.email }}</p> -->
+  <!-- <h1>{{ user.first_name }} {{ user.last_name }}</h1> -->
+  <!-- <h2>{{ user.email }}</h2> -->
 
+  <!-- <h2 class="h5 mt-5 mb-3 font-weight-normal">Your Recipes:</h2> -->
   <p>
-    Your Recipes:
     {% with recipes = user.recipes %}
-      {% include "display_recipes_template.html" %}
+    {% include "display_recipes_template.html" %}
     {% endwith %}
+    <br>
+    <a href='/create_recipe'><button>Create a New Recipe</button></a>
+
   </p>
 
+  <!-- <h2 class="h5 mt-5 mb-3 font-weight-normal">Your Favorite Recipes:</h2>
   <p>
-    Your Favorite Recipes:
+
     {% for favorite in user.favorites %}
     <li>
       <a href="/recipes/{{ favorite.recipe.recipe_id }}">
@@ -22,6 +29,7 @@
       </a>
     </li>
     {% endfor %}
-  </p>
+  </p> -->
+</div>
 
 {% endblock %}

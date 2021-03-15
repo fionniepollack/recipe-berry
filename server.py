@@ -279,6 +279,22 @@ def show_user():
         return render_template("user_details.html", user=user)
 
 
+@app.route("/profile/favorites")
+def show_user_favorites():
+    """Show favorite recipes for the logged in user."""
+
+    if session.get("user_id") == None:
+        flash("Please log in to view your account.")
+        return redirect('/')
+
+    else:
+        user_id = session.get("user_id")
+
+        user = crud.get_user_by_id(user_id)
+
+        return render_template("user_favorite_recipes.html", user=user)
+
+
 @app.route("/registration", methods=["GET"])
 def show_registration():
     """Show user registration page."""
