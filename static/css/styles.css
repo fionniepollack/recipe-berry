@@ -20,26 +20,6 @@ body {
     overflow-x: hidden;
 }
 
-.card {
-  margin: 0 auto; /* Added */
-  float: none; /* Added */
-  margin-bottom: 10px; /* Added */
-  /* width: 18px; */
-}
-
-  /* h3 mt-5 mb-3 font-weight-normal */
-
-  /* h1 { 
-    display: block;
-    font-size: 1.8em;
-    margin-top: 0.67em;
-    margin-bottom: 0.67em;
-    margin-left: 0;
-    margin-right: 0; */
-    /* text-align: center; */
-  /* } */
-
-
 .logo {
      color: #2763BB;
     font-family: 'Sofia', cursive;

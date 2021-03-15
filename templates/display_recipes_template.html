@@ -3,8 +3,8 @@
     <div class="row">
       {% for recipe in recipes %}
       {% if recipe.is_active %}
-      <div class="col-auto">
-        <div class="card" style="width: 18rem;">
+      <div class="col-3">
+        <div class="card">
           <img src="{{ recipe.images[0].image_url }}" class="card-img-top" alt="image" width="200">
           <div class="card-body">
             <p class="card-text">
