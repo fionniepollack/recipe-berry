@@ -14,10 +14,16 @@ body {
     letter-spacing: 0;
     line-height: 1.7;
     margin-top: 0px;
-    /* margin-left: 50px;
-    margin-right: 50px; */
-    margin-bottom: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 180px;
     overflow-x: hidden;
+}
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
 }
 
 .logo {
@@ -33,9 +39,6 @@ body {
 .nav-item {
   margin-right: 50px;
 }
-
-
-
 
 
 /* CSS styling for featured recipes on hompeage.html */

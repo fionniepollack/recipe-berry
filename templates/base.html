@@ -39,12 +39,12 @@
 
   <!-- Flashed Messages -->
   <div class="text-center mt-3">
-  {% for msg in get_flashed_messages() %}
-  <p class="flash-msg">
-    {{ msg }}
-  </p>
-  {% endfor %}
-</div>
+    {% for msg in get_flashed_messages() %}
+    <p class="flash-msg">
+      {{ msg }}
+    </p>
+    {% endfor %}
+  </div>
 
   <!-- Top Navigation Bar -->
   <!-- <div class="topnav">
@@ -69,20 +69,15 @@
 
   <!-- Image Logo sourced from https://www.vecteezy.com/vector-art/1013015-watercolor-bowl-with-blueberries-and-strawberries -->
   <div class="logo d-flex justify-content-center">
-    <a href="/">recipe <img id="logo-main"
+    <a href="/">recipe <img id="logo-main" style="border: none;"
         src="https://static.vecteezy.com/system/resources/previews/001/013/015/non_2x/watercolor-bowl-with-blueberries-and-strawberries-vector.jpg"
         width="120"> berry</a>
   </div>
-  <!-- <div class="logo d-flex justify-content-center">
-    <a href="/">recipe berry</a>
-  </div> -->
 
 
   <!-- Bootstrap Navigation Bar -->
-  <!-- <div class="container"> -->
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <!-- <a class="navbar-brand" href="/">Recipe Berry</a> -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -143,11 +138,21 @@
       </div>
     </div>
   </nav>
-  <!-- </div> -->
 
   {% block body %}{% endblock %}
 
   {% block after_body %}{% endblock %}
+
+  <!-- Footer -->
+  <footer class="footer fixed-bottom mt-auto py-3 bg-light">
+    <div class="container">
+      <p class="text-muted text-center" style="font-size:90%;">
+        Site created and maintained by: Fionnie Pollack &nbsp;&nbsp; | &nbsp;&nbsp; LinkedIn: fionniepollack
+        &nbsp;&nbsp; | &nbsp;&nbsp; GitHub: fionniepollack
+      </p>
+    </div>
+  </footer>
+
 </body>
 
 </html>

@@ -1,13 +1,15 @@
 <div class="d-flex justify-content-center">
   <div class="container-fluid">
-    <div class="row">
+    <div class="row g-4">
       {% for recipe in recipes %}
       {% if recipe.is_active %}
       <div class="col-3">
         <div class="card">
-          <img src="{{ recipe.images[0].image_url }}" class="card-img-top" alt="image" width="200">
+          <a href="/recipes/{{ recipe.recipe_id }}"><img src="{{ recipe.images[0].image_url }}" class="card-img-top"
+              alt="image" width="200">
+          </a>
           <div class="card-body">
-            <p class="card-text">
+            <p class="card-text text-center">
               <a href="/recipes/{{ recipe.recipe_id }}">
                 {{ recipe.title }}
               </a>

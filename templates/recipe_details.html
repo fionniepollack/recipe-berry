@@ -11,30 +11,33 @@
 
 <div class="text-start mt-5" style="margin-left:50px;margin-right:50px;">
 
-  <h1>{{ recipe.title }}</h1>
-
-  <!-- <h1>{{ recipe.title }}</h1> -->
+  <h1 class="mb-3">{{ recipe.title }}</h1>
 
   <ul style="list-style-type:none;">
     {% for image in recipe.images %}
     <li>
-      <img src="{{ image.image_url }}" alt="image" width="200" height="200">
+      <img src="{{ image.image_url }}" alt="image" width="200">
     </li>
     {% endfor %}
   </ul>
 
-  <p>
-    Author: {{ recipe.user.first_name}} {{ recipe.user.last_name}}<br>
-    Description: {{ recipe.description }}<br>
-    Prep Time: {{ recipe.prep_time }} minutes<br>
-    Cook Time: {{ recipe.cook_time }} minutes<br>
-    Total Time: {{ recipe.total_time }} minutes<br>
-    Serving Quantity: {{ recipe.serving_qty }}<br>
-    Source: {{ recipe.source }}<br>
-    Cuisine: {{ recipe.cuisine.cuisine_name }}<br>
+  <br>
+
+  <h3>About:</h3>
+  <ul>
+    <li>Author: {{ recipe.user.first_name }} {{ recipe.user.last_name[0] }}.</li>
+    <li>Description: {{ recipe.description }}</li>
+    <li>Prep Time: {{ recipe.prep_time }} minutes</li>
+    <li>Cook Time: {{ recipe.cook_time }} minutes</li>
+    <li>Total Time: {{ recipe.total_time }} minutes</li>
+    <li>Serving Quantity: {{ recipe.serving_qty }}</li>
+    <li>Source: {{ recipe.source }}</li>
+    <li>Cuisine: {{ recipe.cuisine.cuisine_name }}</li>
     <!-- Category: {% for category in recipe.categories %}{{ category.category_name }} {% endfor %} -->
-    Category: {{ recipe.categories|join(', ', attribute='category_name') }}
-  </p>
+    <li>Category: {{ recipe.categories|join(', ', attribute='category_name') }}</li>
+  </ul>
+
+  <br>
 
   <h3>Ingredients:</h3>
   <ul>
@@ -45,6 +48,8 @@
     {% endfor %}
   </ul>
 
+  <br>
+
   <h3>Instructions:</h3>
   <ul style="list-style-type:none;">
     {% for recipe_step in recipe.recipe_steps %}
@@ -54,10 +59,12 @@
     {% endfor %}
   </ul>
 
+  <br>
+
   <!-- View Average Rating -->
-  <P>
-    Average Rating: {{ average_rating | int }}
-  </P>
+  <h5> Average Rating: {{ average_rating | round(2, 'common') }}</h5>
+
+  <br>
 
   <!-- Rating Feature -->
   <!-- If user logged in -->
@@ -66,38 +73,41 @@
 
   {% if session.get('user_id') %}
   {% if user_rating %}
-  <p>
-    Your rating for this recipe: {{ user_rating.rating_value }}
-  </p>
+  <h5>Your rating for this recipe: {{ user_rating.rating_value }}</h5>
   {% else %}
-  <p>
-  <form action="/recipes/rating/{{ recipe.recipe_id }}" method="POST">
-    Rate this Recipe:
-    <select name="rating_value">
-      {% for num in range(1,6) %}
-      <option value="{{ num }}">{{ num }}</option>
-      {% endfor %}
-    </select>
-    <button type="submit" id="rate-recipe">Rate this recipe</button>
-  </form>
-  </p>
+  <h5>
+    <form action="/recipes/rating/{{ recipe.recipe_id }}" method="POST">
+      Rate This Recipe:
+      <select name="rating_value">
+        {% for num in range(1,6) %}
+        <option value="{{ num }}">{{ num }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" id="rate-recipe" class="btn btn-primary" style="background-color: #005a87;">Submit
+        Rating</button>
+    </form>
+  </h5>
   {% endif %}
   {% endif %}
+
+  <br>
 
   <!-- Favorite a recipe feature -->
   {% if session.get('user_id') %}
   {% if is_favorite %}
   <p>
-    <button type="button" id="favorite-recipe" style="display: none;">Add to favorites</button>
-    <button type="button" id="unfavorite-recipe">Remove from favorites</button>
+    <button type="button" id="favorite-recipe" class="btn btn-success" style="display: none;">Add Recipe to
+      favorites</button>
+    <button type="button" id="unfavorite-recipe" class="btn btn-danger">Remove Recipe from Favorites</button>
     <input type="hidden" value="{{ recipe.user.user_id }}" id="user-id">
     <input type="hidden" value="{{ recipe.recipe_id }}" id="recipe-id">
   </p>
 
   {% else %}
   <p>
-    <button type="button" id="favorite-recipe">Add to favorites</button>
-    <button type="button" id="unfavorite-recipe" style="display: none;">Remove from favorites</button>
+    <button type="button" id="favorite-recipe" class="btn btn-success">Add Recipe to Favorites</button>
+    <button type="button" id="unfavorite-recipe" class="btn btn-danger" style="display: none;">Remove Recipe from
+      Favorites</button>
     <input type="hidden" value="{{ recipe.user.user_id }}" id="user-id">
     <input type="hidden" value="{{ recipe.recipe_id }}" id="recipe-id">
   </p>
@@ -111,11 +121,11 @@
     {% if recipe.user_id == session.get('user_id') %}
   <form action="/recipes/{{ recipe.recipe_id }}" method="POST">
     <!-- <input type="hidden" name="recipe_id" value="{{ recipe.recipe_id }}" id="recipe-id"> -->
-    <button type="submit" id="delete-recipe">Delete Recipe</button>
+    <button type="submit" id="delete-recipe" class="btn btn-danger">Delete Recipe</button>
   </form>
   {% endif %}
   </p>
 
 </div>
 
-  {% endblock %}
+{% endblock %}
