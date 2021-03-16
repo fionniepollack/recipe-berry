@@ -14,3 +14,4 @@ urllib3==1.25.9
 Werkzeug==1.0.1
 requests==2.24
 Faker==6.3.0
+pytest
