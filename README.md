@@ -8,6 +8,7 @@ Recipe Berry is created with love, sweat, and tears by Fionnie Pollack. You can 
 1. [Technologies](#technologies)
 2. [Features](#features)
 3. [Why Recipe Berry?](#why)
+4. [Installation](#installation)
 5. [Looking Ahead](#future)
 6. [Acknowledgments](#credits)
 7. [Author](#author)
@@ -37,21 +38,65 @@ Recipe Berry is created with love, sweat, and tears by Fionnie Pollack. You can 
 
 Recipe Berry was developed as my solo capstone project at Hackbright Academy. Inspired by my love for food and exploring various cuisines in the kitchen, I designed Recipe Berry to share my passion with others. Often finding it difficult to find recipes in one place, I was motivated to develop a central destination to store, manage, and organize all my favorite recipes. Recipe Berry is the virtual cookbook organizer I wish I had and I hope you enjoy using it too.
 
+## <a name="installation"></a>Installation
+If you would like to run Recipe Berry locally, please follow these instructions.
+
+### Prerequisites:
+
+- Install [PostgreSQL](https://www.postgresql.org/download/).
+- Install [Python](https://www.python.org/downloads/).
+
+### Set up Recipe Berry:
+
+1. Clone this repository:
+
+```$ git clone https://github.com/fionniepollack/recipe-berry.git```
+
+2. Create a virtual environment and activate it:
+
+ Mac:
+
+    $ virtualenv env
+    $ source env/bin/activate
+
+ Windows:
+
+    $ virtualenv env --always-copy
+    $ source env/bin/activate
+
+3. Install the dependencies:
+
+```(env) $ pip install -r requirements.txt```
+
+4. Create the database with the name `recipeberry`:
+
+```(env) $ createdb recipeberry```
+
+5. Seed the database:
+
+```(env) $ python3 seed_database.py```
+
+6. Start the server to run the app:
+
+```(env) $ python3 server.py```
+
+7. Finally, go to `http://localhost:5000/` in your browser to start using Recipe Berry!
+
 ## <a name="future"></a>Looking Ahead
-###Features
+
+Features
 
 - Create an advanced search feature to search cuisines, categories, and ingredients
 - Allow users to update authored recipes
 - Allow users to filter recipes by rating
 
-###Other:
+Other:
 
 - More tests!
 
 ## <a name="credits"></a>Acknowledgments
 
-- Hackbright Academy for providing a supportive community to learn software engineering and for inspiring this project
-- The Meal DB API for providing recipe information
+Special thank you to my family, friends, mentors, and fellow Hackbright advisors and cohort-mates for the unwavering support, guidance, mentorship, and inspiration.
 
 ## <a name="author"></a>Author
 Fionnie Pollack is a Software Engineer living in Knoxville, TN.
