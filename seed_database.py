@@ -51,7 +51,7 @@ def get_test_recipes():
     # import pdb; pdb.set_trace()
 
 
-    # Five random recipe id's sourced from TheMealDB API
+    # Eighteen random recipe id's sourced from TheMealDB API
     test_recipe_ids = [52795, 53020, 52937, 52830, 53011,
                        53019, 52962, 52955, 52840, 52996,
                        52965, 52804, 52829, 52883, 52913,

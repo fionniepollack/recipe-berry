@@ -308,8 +308,8 @@ def register_user():
 
     email = request.form.get("email")
     password = request.form.get("password")
-    first_name = request.form.get("password")
-    last_name = request.form.get("password")
+    first_name = request.form.get("first_name")
+    last_name = request.form.get("last_name")
     join_date = datetime.now()
 
     user = crud.get_user_by_email(email)
